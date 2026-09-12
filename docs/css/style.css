@@ -176,7 +176,7 @@ body.page-home .site-header.scrolled .nav-toggle {
     position: relative;
     background:
         linear-gradient(rgba(43, 40, 35, 0.35), rgba(43, 40, 35, 0.55)),
-        url('images/ateliers.jpg') center / cover no-repeat;
+        url('../images/ateliers.jpg') center / cover no-repeat;
     display: flex;
     align-items: flex-end;
     padding: 50px;
@@ -267,7 +267,7 @@ body.page-homme::before {
     z-index: -1;
     background:
         linear-gradient(rgba(250, 248, 245, 0.88), rgba(250, 248, 245, 0.88)),
-        url('images/homme-hero.jpg') center top / cover no-repeat;
+        url('../images/homme-hero.jpg') center top / cover no-repeat;
 }
 
 body.page-homme .site-header {
@@ -302,7 +302,7 @@ body.page-homme .site-header {
     position: relative;
     background:
         linear-gradient(rgba(43, 40, 35, 0.4), rgba(43, 40, 35, 0.55)),
-        url('images/ateliers.jpg') center / cover no-repeat;
+        url('../images/ateliers.jpg') center / cover no-repeat;
     display: flex;
     align-items: flex-end;
     padding: 50px;
@@ -370,7 +370,7 @@ body.page-homme .site-header {
 .account-hero {
     background:
         linear-gradient(rgba(43, 40, 35, 0.25), rgba(43, 40, 35, 0.45)),
-        url('images/ateliers.jpg') center / cover no-repeat;
+        url('../images/ateliers.jpg') center / cover no-repeat;
     padding: 60px 0 0;
 }
 
@@ -518,7 +518,7 @@ body.page-homme .site-header {
 .hero-zoom-bg {
     position: absolute;
     inset: 0;
-    background-image: url('images/hero.jpg');
+    background-image: url('../images/hero.jpg');
     background-size: cover;
     background-position: 38% 62%;
     background-color: #cfc7b8;
