@@ -1,4 +1,9 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
+
 $pageTitle = "Contact";
 
 $success = false;
@@ -13,9 +18,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Email invalide.";
     if ($message === '') $errors[] = "Le message ne peut pas être vide.";
 
+    $configPath = __DIR__ . '/includes/mail-config.php';
+    if (empty($errors) && !file_exists($configPath)) {
+        $errors[] = "L'envoi d'email n'est pas encore configuré (includes/mail-config.php manquant).";
+    }
+
     if (empty($errors)) {
-        // mail("contact@lylium.fr", "Nouveau message - $nom", $message, "From: $email");
-        $success = true;
+        $config = require $configPath;
+
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = $config['smtp_host'];
+            $mail->SMTPAuth = true;
+            $mail->Username = $config['smtp_user'];
+            $mail->Password = $config['smtp_pass'];
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = $config['smtp_port'];
+            $mail->CharSet = 'UTF-8';
+
+            $mail->setFrom($config['from_email'], $config['from_name']);
+            $mail->addAddress($config['to_email']);
+            $mail->addReplyTo($email, $nom);
+
+            $mail->Subject = "Nouveau message de contact — $nom";
+            $mail->Body = "De : $nom <$email>\n\n$message";
+
+            $mail->send();
+            $success = true;
+        } catch (PHPMailerException $e) {
+            $errors[] = "L'envoi a échoué : " . $mail->ErrorInfo;
+        }
     }
 }
 
