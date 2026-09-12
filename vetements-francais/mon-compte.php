@@ -60,11 +60,7 @@ $membreDepuis = date('d/m/Y', strtotime($userData['date_creation']));
                 <div class="grid grid-3">
                     <?php foreach ($favorisIds as $id): ?>
                         <?php if (isset($produits[$id])): $produit = $produits[$id]; ?>
-                            <a href="produit.php?id=<?= $id ?>" class="card produit-card">
-                                <div class="card-image" style="background-image:url('<?= htmlspecialchars($produit['image']) ?>')"></div>
-                                <h3><?= htmlspecialchars($produit['nom']) ?></h3>
-                                <p class="prix"><?= (int)$produit['prix'] ?> €</p>
-                            </a>
+                            <?php include 'includes/produit-card.php'; ?>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>

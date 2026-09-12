@@ -23,7 +23,13 @@ if ($produit && estConnecte()) {
     <div class="container">
         <?php if ($produit): ?>
             <div class="two-col produit-fiche">
-                <div class="image-placeholder large" style="background-image:url('<?= htmlspecialchars($produit['image']) ?>')"></div>
+                <?php if (!empty($produit['image'])): ?>
+                    <div class="image-placeholder large" style="background-image:url('<?= htmlspecialchars($produit['image']) ?>')"></div>
+                <?php else: ?>
+                    <div class="image-placeholder large card-image--swatch" style="background-color:<?= htmlspecialchars($produit['couleur'] ?? '#e9e4da') ?>">
+                        <span class="card-image-label"><?= htmlspecialchars($produit['nom']) ?></span>
+                    </div>
+                <?php endif; ?>
                 <div>
                     <h1><?= htmlspecialchars($produit['nom']) ?></h1>
                     <p class="prix prix-lg"><?= (int)$produit['prix'] ?> €</p>

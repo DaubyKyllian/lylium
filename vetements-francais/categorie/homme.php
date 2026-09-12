@@ -9,8 +9,9 @@ include '../includes/navbar.php';
 $produitsFiltres = array_filter($produits, fn($p) => $p['categorie'] === 'homme');
 ?>
 
-<section class="section category-title-block">
-    <div class="container">
+<section class="category-hero">
+    <div class="grain-overlay" aria-hidden="true"></div>
+    <div class="container category-hero-inner">
         <p class="breadcrumb"><a href="/index.php">Accueil</a> / Homme</p>
         <span class="eyebrow">Collection</span>
         <h1>Homme</h1>
@@ -35,11 +36,7 @@ $produitsFiltres = array_filter($produits, fn($p) => $p['categorie'] === 'homme'
         <?php else: ?>
             <div class="grid grid-4">
                 <?php foreach ($produitsFiltres as $id => $produit): ?>
-                    <a href="/produit.php?id=<?= $id ?>" class="card produit-card">
-                        <div class="card-image" style="background-image:url('<?= htmlspecialchars($produit['image']) ?>')"></div>
-                        <h3><?= htmlspecialchars($produit['nom']) ?></h3>
-                        <p class="prix"><?= (int)$produit['prix'] ?> €</p>
-                    </a>
+                    <?php include '../includes/produit-card.php'; ?>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>

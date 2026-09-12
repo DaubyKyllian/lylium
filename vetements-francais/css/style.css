@@ -269,6 +269,73 @@ body.page-home .site-header.scrolled .nav-toggle {
 
 .category-title-block .eyebrow { margin-bottom: 10px; }
 
+/* Hero des pages catégorie (Homme / Femme / Enfant) — même langage que le hero de l'accueil */
+.category-hero {
+    position: relative;
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 110px 0 70px;
+    overflow: hidden;
+}
+
+.category-hero-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.category-hero .breadcrumb {
+    font-size: 0.8rem;
+    color: rgba(250, 248, 245, 0.55);
+    margin-bottom: 18px;
+}
+
+.category-hero .breadcrumb a {
+    color: rgba(250, 248, 245, 0.8);
+    text-decoration: underline;
+}
+
+.category-hero .eyebrow { color: rgba(250, 248, 245, 0.65); }
+
+.category-hero h1 {
+    color: var(--color-bg);
+    font-size: 3.2rem;
+    letter-spacing: 3px;
+    margin-bottom: 0.3em;
+}
+
+.category-hero .intro {
+    color: rgba(250, 248, 245, 0.8);
+    max-width: 480px;
+    margin: 0;
+}
+
+.category-hero .breadcrumb,
+.category-hero .eyebrow,
+.category-hero h1,
+.category-hero .intro {
+    opacity: 0;
+    animation: heroIntroUp 0.9s cubic-bezier(0.16, 0.8, 0.28, 1) forwards;
+}
+.category-hero .breadcrumb { animation-delay: 0.05s; }
+.category-hero .eyebrow { animation-delay: 0.15s; }
+.category-hero h1 { animation-delay: 0.25s; }
+.category-hero .intro { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .category-hero .breadcrumb,
+    .category-hero .eyebrow,
+    .category-hero h1,
+    .category-hero .intro {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 800px) {
+    .category-hero { padding: 90px 0 50px; }
+    .category-hero h1 { font-size: 2.2rem; letter-spacing: 2px; }
+}
+
 .category-title-block .breadcrumb {
     font-size: 0.8rem;
     color: var(--color-muted);
@@ -1047,6 +1114,26 @@ body.page-home .site-header.scrolled .nav-toggle {
 }
 
 .image-placeholder.large { aspect-ratio: 4 / 5; margin-bottom: 0; }
+
+/* Pastille de couleur pour les produits sans photo (repère visuel, pas une erreur) */
+.card-image--swatch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+}
+
+.card-image-label {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.3;
+    color: rgba(43, 40, 35, 0.6);
+}
+
+.image-placeholder.large .card-image-label {
+    font-size: 1.6rem;
+}
 
 .prix { color: var(--color-muted); margin: 0; }
 .prix-lg { font-size: 1.4rem; margin-bottom: 1em; }

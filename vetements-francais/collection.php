@@ -14,11 +14,7 @@ include 'includes/produits-data.php';
 
         <div class="grid grid-4">
             <?php foreach ($produits as $id => $produit): ?>
-                <a href="produit.php?id=<?= $id ?>" class="card produit-card">
-                    <div class="card-image" style="background-image:url('<?= htmlspecialchars($produit['image']) ?>')"></div>
-                    <h3><?= htmlspecialchars($produit['nom']) ?></h3>
-                    <p class="prix"><?= (int)$produit['prix'] ?> €</p>
-                </a>
+                <?php include 'includes/produit-card.php'; ?>
             <?php endforeach; ?>
         </div>
     </div>
