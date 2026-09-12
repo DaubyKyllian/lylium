@@ -24,7 +24,7 @@ include 'includes/produits-data.php';
 </script>
 
 <section class="hero" id="hero">
-    <div class="hero-mark" aria-hidden="true">L</div>
+    <div class="hero-grain" aria-hidden="true"></div>
     <div class="hero-content" id="heroContent">
         <h1>Lylium</h1>
         <p class="subtitle">Vêtements français, pensés pour durer.</p>
@@ -43,22 +43,22 @@ include 'includes/produits-data.php';
     <span class="hero-scroll-hint" id="heroScrollHint">Faites défiler ↓</span>
 </section>
 
-<section class="section section-alt">
-    <div class="container two-col">
-        <div>
-            <h2 class="reveal">Fabriqué en France</h2>
-            <p class="reveal" style="--reveal-delay:0.1s">Chaque vêtement Lylium est conçu et confectionné par des ateliers français,
-               avec des matières sélectionnées pour leur qualité et leur durabilité.</p>
-            <a href="/marque.php" class="btn btn-outline reveal" style="--reveal-delay:0.2s">Notre histoire</a>
-        </div>
-        <div class="image-placeholder reveal reveal-image" style="background-image:url('/images/ateliers.jpg');--reveal-delay:0.15s"></div>
+<section class="section section-alt manifesto">
+    <div class="container narrow manifesto-inner">
+        <span class="eyebrow reveal">Notre engagement</span>
+        <p class="manifesto-statement reveal" style="--reveal-delay:0.08s">Chaque pièce Lylium est conçue et confectionnée par des ateliers français,
+           pour traverser les saisons — pas seulement les tendances.</p>
+        <a href="/marque.php" class="link-underline reveal" style="--reveal-delay:0.18s">Découvrir notre histoire</a>
     </div>
 </section>
 
 <section class="section">
     <div class="container">
         <div class="section-heading reveal">
-            <h2>Nos pièces phares</h2>
+            <div>
+                <span class="eyebrow">La sélection</span>
+                <h2>Nos pièces phares</h2>
+            </div>
             <a href="/collection.php" class="link-underline">Voir toute la collection</a>
         </div>
 
@@ -83,6 +83,10 @@ include 'includes/produits-data.php';
 
 <section class="section section-alt values-section">
     <div class="container">
+        <div class="values-heading reveal">
+            <span class="eyebrow">Pourquoi Lylium</span>
+            <h2>Une exigence à chaque étape.</h2>
+        </div>
         <div class="values-grid">
             <div class="value-item reveal">
                 <span class="value-index">01</span>
@@ -103,12 +107,12 @@ include 'includes/produits-data.php';
     </div>
 </section>
 
-<section class="editorial-banner reveal">
-    <div class="editorial-bg" style="background-image:url('/images/homme-hero.jpg')"></div>
-    <div class="editorial-overlay"></div>
+<section class="editorial-banner">
+    <div class="hero-grain" aria-hidden="true"></div>
     <div class="editorial-content">
-        <p class="editorial-quote">« La mode passe, le style reste. »</p>
-        <a href="/lookbook.php" class="btn">Découvrir le lookbook</a>
+        <div class="editorial-rule reveal"></div>
+        <p class="editorial-quote reveal" style="--reveal-delay:0.1s">« La mode passe, le style reste. »</p>
+        <a href="/lookbook.php" class="btn hero-btn reveal" style="--reveal-delay:0.2s">Découvrir le lookbook</a>
     </div>
 </section>
 

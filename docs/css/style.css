@@ -607,17 +607,14 @@ body.page-homme .site-header {
     overflow: hidden;
 }
 
-.hero-mark {
+/* Grain subtil pour donner du grain/de la matiÃ¨re aux fonds sombres, sans photo */
+.hero-grain {
     position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-serif);
-    font-size: min(65vw, 56vh);
-    line-height: 1;
-    color: rgba(250, 248, 245, 0.045);
+    inset: 0;
     pointer-events: none;
-    user-select: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .hero-content {
@@ -731,8 +728,17 @@ body.page-homme .site-header {
 
 @media (max-width: 800px) {
     .hero-content h1 { font-size: 2.8rem; letter-spacing: 3px; }
-    .hero-mark { font-size: min(80vw, 40vh); }
     .hero-marquee { bottom: 60px; }
+}
+
+/* Petit label trackÃ© utilisÃ© au-dessus des titres de section (repÃ¨re Ã©ditorial) */
+.eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 14px;
 }
 
 /* Apparition dynamique des sections au scroll (dÃ©clenchÃ©e en JS via IntersectionObserver) */
@@ -774,7 +780,6 @@ body.page-homme .site-header {
     }
     .hero-marquee-track { animation: none; }
     .site-intro { display: none; }
-    .editorial-bg { animation: none; }
 }
 
 /* Buttons */
@@ -811,13 +816,34 @@ body.page-homme .site-header {
 /* Page d'accueil â€” sections additionnelles */
 .section-heading {
     display: flex;
-    align-items: baseline;
+    align-items: flex-end;
     justify-content: space-between;
     gap: 24px;
     margin-bottom: 40px;
 }
 
 .section-heading h2 { margin-bottom: 0; }
+
+/* FabriquÃ© en France â€” dÃ©claration Ã©ditoriale, sans photo */
+.manifesto-inner {
+    text-align: center;
+}
+
+.manifesto-statement {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.45;
+    margin: 0 0 0.9em;
+}
+
+/* Nos valeurs â€” intitulÃ© */
+.values-heading {
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto 50px;
+}
+
+.values-heading h2 { margin-bottom: 0; }
 
 .link-underline {
     position: relative;
@@ -916,43 +942,36 @@ body.page-homme .site-header {
 .value-item h3 { margin-bottom: 0.6em; }
 .value-item p { color: var(--color-muted); font-size: 0.95rem; margin: 0; }
 
-/* Bandeau Ã©ditorial */
+/* Bandeau Ã©ditorial â€” citation sur fond sombre, en Ã©cho au hero (sans photo) */
 .editorial-banner {
     position: relative;
-    min-height: 60vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-}
-
-.editorial-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center 30%;
-    background-color: #cfc7b8;
-    animation: slowZoom 24s ease-in-out infinite alternate;
-}
-
-@keyframes slowZoom {
-    from { transform: scale(1); }
-    to { transform: scale(1.08); }
-}
-
-.editorial-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(43, 40, 35, 0.45);
+    background: var(--color-text);
 }
 
 .editorial-content {
     position: relative;
     z-index: 1;
     text-align: center;
-    color: #fff;
+    color: var(--color-bg);
     padding: 60px 24px;
     max-width: 640px;
+}
+
+.editorial-rule {
+    width: 60px;
+    height: 1px;
+    margin: 0 auto 26px;
+    background: rgba(250, 248, 245, 0.5);
+    transform: scaleX(0);
+}
+
+.editorial-rule.reveal-visible {
+    transform: scaleX(1);
 }
 
 .editorial-quote {
@@ -963,23 +982,11 @@ body.page-homme .site-header {
     margin-bottom: 1em;
 }
 
-.editorial-content .btn {
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.85);
-    color: #fff;
-}
-
-.editorial-content .btn:hover {
-    background: #fff;
-    color: var(--color-text);
-    opacity: 1;
-}
-
 @media (max-width: 800px) {
     .section-heading { flex-direction: column; align-items: flex-start; gap: 10px; }
     .values-grid { grid-template-columns: 1fr; gap: 36px; }
     .editorial-quote { font-size: 1.6rem; }
-    .editorial-banner { min-height: 50vh; }
+    .editorial-banner { min-height: 46vh; }
 }
 
 /* Grid / Cards */
