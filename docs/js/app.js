@@ -9,6 +9,31 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Bascule thème clair/sombre, mémorisée dans localStorage
+(function () {
+    var toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', function () {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        try { localStorage.setItem('lylium_theme', isDark ? 'light' : 'dark'); } catch (e) {}
+    });
+})();
+
+// Auto-soumission des filtres de la collection au changement
+(function () {
+    var toolbar = document.querySelector('.collection-toolbar');
+    if (!toolbar) return;
+    toolbar.querySelectorAll('select').forEach(function (select) {
+        select.addEventListener('change', function () { toolbar.submit(); });
+    });
+})();
+
 // Apparition animée des blocs ".reveal" (ex: transition hero → section suivante)
 (function () {
     var elements = document.querySelectorAll('.reveal');

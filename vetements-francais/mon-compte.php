@@ -21,26 +21,11 @@ require 'includes/produits-data.php';
 
 $initiale = mb_strtoupper(mb_substr($userData['nom'], 0, 1));
 $membreDepuis = date('d/m/Y', strtotime($userData['date_creation']));
+
+$userNom = $userData['nom'];
+$accountActiveTab = 'presentation';
+include 'includes/account-hero.php';
 ?>
-
-<section class="account-hero">
-    <div class="grain-overlay" aria-hidden="true"></div>
-    <div class="account-hero-overlay">
-        <div class="container">
-            <div class="account-hero-top">
-                <h1>Nous sommes heureux de vous revoir, <?= htmlspecialchars($userData['nom']) ?></h1>
-                <a href="deconnexion.php" class="account-logout-link">Se déconnecter</a>
-            </div>
-
-            <nav class="account-tabs">
-                <a href="mon-compte.php" class="active">Présentation</a>
-                <a href="favoris.php">Mes favoris</a>
-                <span class="account-tab-disabled">Commandes</span>
-                <span class="account-tab-disabled">Adresses</span>
-            </nav>
-        </div>
-    </div>
-</section>
 
 <section class="section">
     <div class="container account-dashboard">

@@ -17,3 +17,20 @@ function exigerConnexion() {
         exit;
     }
 }
+
+// Protection CSRF : un jeton par session, à inclure en champ caché dans chaque
+// formulaire POST et à vérifier avec csrfVerifie() côté traitement.
+function csrfToken() {
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+function csrfChamp() {
+    return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars(csrfToken()) . '">';
+}
+
+function csrfVerifie($token) {
+    return !empty($_SESSION['csrf_token']) && is_string($token) && hash_equals($_SESSION['csrf_token'], $token);
+}

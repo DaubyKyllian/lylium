@@ -17,6 +17,12 @@
         <div class="main-nav">
             <a href="collection.php" class="<?= ($navActive ?? '') === 'collection' ? 'active' : '' ?>">Collection</a>
             <a href="marque.php" class="<?= ($navActive ?? '') === 'marque' ? 'active' : '' ?>">La marque</a>
+            <a href="recherche.php" class="icon-link" aria-label="Recherche">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                    <circle cx="11" cy="11" r="7"/>
+                    <line x1="21" y1="21" x2="16.5" y2="16.5"/>
+                </svg>
+            </a>
             <a href="contact.php" class="icon-link" aria-label="Contact">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 4h16v14H8l-4 4V4z"/>
@@ -43,6 +49,16 @@
                     </svg>
                 </a>
             <?php endif; ?>
+
+            <button type="button" class="theme-toggle icon-link" id="themeToggle" aria-label="Basculer le thème clair/sombre">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                    <circle cx="12" cy="12" r="4.5"/>
+                    <path d="M12 2.5v2.5M12 19v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12H5M19 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/>
+                </svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>
+                </svg>
+            </button>
         </div>
 
 

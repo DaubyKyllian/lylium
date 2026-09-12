@@ -13,15 +13,19 @@ $user = utilisateurConnecte();
 $stmt = $pdo->prepare('SELECT produit_id FROM favoris WHERE user_id = ? ORDER BY date_ajout DESC');
 $stmt->execute([$user['id']]);
 $favorisIds = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+$userNom = $user['nom'];
+$accountActiveTab = 'favoris';
+include 'includes/account-hero.php';
 ?>
 
 <section class="section">
     <div class="container">
-        <h1>Mes favoris</h1>
-
         <?php if (empty($favorisIds)): ?>
-            <p class="intro">Tu n'as pas encore ajouté de favoris.</p>
-            <a href="collection.php" class="btn btn-outline">Voir la collection</a>
+            <div class="account-empty">
+                <p>Tu n'as pas encore ajouté de favoris.</p>
+                <a href="collection.php" class="btn btn-outline">Voir la collection</a>
+            </div>
         <?php else: ?>
             <div class="grid grid-4">
                 <?php foreach ($favorisIds as $id): ?>

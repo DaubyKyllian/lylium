@@ -1,3 +1,28 @@
+<section class="newsletter-band">
+    <div class="grain-overlay" aria-hidden="true"></div>
+    <div class="container newsletter-inner">
+        <div>
+            <span class="eyebrow">Newsletter</span>
+            <h2>Restez informé de nos nouveautés</h2>
+        </div>
+
+        <div>
+            <?php if (($_GET['newsletter'] ?? '') === 'ok'): ?>
+                <p class="alert alert-success">Merci, vous êtes bien inscrit·e.</p>
+            <?php elseif (($_GET['newsletter'] ?? '') === 'erreur'): ?>
+                <p class="alert alert-error">Adresse invalide, merci de réessayer.</p>
+            <?php else: ?>
+                <form method="post" action="/newsletter.php" class="newsletter-form">
+                    <?= csrfChamp() ?>
+                    <input type="hidden" name="retour" value="<?= htmlspecialchars(parse_url($_SERVER['REQUEST_URI'] ?? '/index.php', PHP_URL_PATH)) ?>">
+                    <input type="email" name="email" placeholder="votre@email.com" required>
+                    <button type="submit" class="btn hero-btn">S'inscrire</button>
+                </form>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
 <footer class="site-footer">
     <div class="container footer-grid">
 
@@ -42,6 +67,7 @@
             <span class="footer-col-title">La maison</span>
             <a href="/marque.php">Notre histoire</a>
             <a href="/lookbook.php">Lookbook</a>
+            <a href="/livraison-retours.php">Livraison &amp; retours</a>
             <a href="/contact.php">Contact</a>
         </div>
 

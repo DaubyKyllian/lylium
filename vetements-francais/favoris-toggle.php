@@ -6,7 +6,7 @@ require 'includes/db.php';
 $produitId = isset($_POST['produit_id']) ? (int)$_POST['produit_id'] : 0;
 $user = utilisateurConnecte();
 
-if ($produitId > 0) {
+if ($produitId > 0 && csrfVerifie($_POST['csrf_token'] ?? null)) {
     $stmt = $pdo->prepare('SELECT id FROM favoris WHERE user_id = ? AND produit_id = ?');
     $stmt->execute([$user['id'], $produitId]);
     $existant = $stmt->fetch();

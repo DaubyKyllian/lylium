@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
+require 'includes/session.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
@@ -14,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $message = trim($_POST['message'] ?? '');
 
+    if (!csrfVerifie($_POST['csrf_token'] ?? null)) $errors[] = "Session expirée, merci de renvoyer le formulaire.";
     if ($nom === '') $errors[] = "Le nom est requis.";
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Email invalide.";
     if ($message === '') $errors[] = "Le message ne peut pas être vide.";
@@ -95,6 +97,7 @@ include 'includes/navbar.php';
             <?php endif; ?>
 
             <form method="post" class="contact-form">
+                <?= csrfChamp() ?>
                 <label for="nom">Nom</label>
                 <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($_POST['nom'] ?? '') ?>" required>
 
