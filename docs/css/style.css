@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
 
 :root {
     --color-bg: #faf8f5;
@@ -66,9 +66,9 @@ a { color: inherit; text-decoration: none; }
     padding: 18px 24px;
 }
 
-/* Classe ajoutée en JavaScript pour masquer la navbar */
+/* Classe ajoutÃ©e en JavaScript pour masquer la navbar */
 .navbar.hidden {
-  transform: translateY(-100%); /* Pousse la navbar hors de l'écran */
+  transform: translateY(-100%); /* Pousse la navbar hors de l'Ã©cran */
 }
 
 .logo {
@@ -134,7 +134,7 @@ a { color: inherit; text-decoration: none; }
     cursor: pointer;
 }
 
-/* Navbar transparente sur la home, opaque après le hero */
+/* Navbar transparente sur la home, opaque aprÃ¨s le hero */
 body.page-home .site-header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -169,14 +169,14 @@ body.page-home .site-header.scrolled .nav-toggle {
 .login-section {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
-    min-height: calc(100vh - 73px); /* hauteur de l'écran moins le header */
+    min-height: calc(100vh - 73px); /* hauteur de l'Ã©cran moins le header */
 }
 
 .login-visual {
     position: relative;
     background:
         linear-gradient(rgba(43, 40, 35, 0.35), rgba(43, 40, 35, 0.55)),
-        url('/images/ateliers.jpg') center / cover no-repeat;
+        url('images/ateliers.jpg') center / cover no-repeat;
     display: flex;
     align-items: flex-end;
     padding: 50px;
@@ -255,7 +255,7 @@ body.page-home .site-header.scrolled .nav-toggle {
     }
 }
 
-/* Fond plein page pour une catégorie */
+/* Fond plein page pour une catÃ©gorie */
 body.page-homme {
     position: relative;
 }
@@ -267,7 +267,7 @@ body.page-homme::before {
     z-index: -1;
     background:
         linear-gradient(rgba(250, 248, 245, 0.88), rgba(250, 248, 245, 0.88)),
-        url('/images/homme-hero.jpg') center top / cover no-repeat;
+        url('images/homme-hero.jpg') center top / cover no-repeat;
 }
 
 body.page-homme .site-header {
@@ -302,7 +302,7 @@ body.page-homme .site-header {
     position: relative;
     background:
         linear-gradient(rgba(43, 40, 35, 0.4), rgba(43, 40, 35, 0.55)),
-        url('/images/ateliers.jpg') center / cover no-repeat;
+        url('images/ateliers.jpg') center / cover no-repeat;
     display: flex;
     align-items: flex-end;
     padding: 50px;
@@ -370,7 +370,7 @@ body.page-homme .site-header {
 .account-hero {
     background:
         linear-gradient(rgba(43, 40, 35, 0.25), rgba(43, 40, 35, 0.45)),
-        url('/images/ateliers.jpg') center / cover no-repeat;
+        url('images/ateliers.jpg') center / cover no-repeat;
     padding: 60px 0 0;
 }
 
@@ -501,8 +501,8 @@ body.page-homme .site-header {
     .account-dashboard { grid-template-columns: 1fr; }
 }
 
-/* Hero plein écran avec zoom au scroll (page d'accueil) */
-/* Hero épinglé avec zoom + fondu au scroll */
+/* Hero plein Ã©cran avec zoom au scroll (page d'accueil) */
+/* Hero Ã©pinglÃ© avec zoom + fondu au scroll */
 .hero-pin-wrapper {
     position: relative;
     height: 220vh; /* plus c'est grand, plus l'effet dure longtemps au scroll */
@@ -518,7 +518,7 @@ body.page-homme .site-header {
 .hero-zoom-bg {
     position: absolute;
     inset: 0;
-    background-image: url('/images/hero.jpg');
+    background-image: url('images/hero.jpg');
     background-size: cover;
     background-position: 38% 62%;
     background-color: #cfc7b8;
@@ -563,7 +563,7 @@ body.page-homme .site-header {
     margin-bottom: 2em;
 }
 
-/* Entrée en fondu-cascade au chargement de la page (indépendante du scroll) */
+/* EntrÃ©e en fondu-cascade au chargement de la page (indÃ©pendante du scroll) */
 .hero-zoom-content h1,
 .hero-zoom-content .subtitle,
 .hero-zoom-content .btn {
@@ -608,8 +608,8 @@ body.page-homme .site-header {
     .hero-zoom-content h1 { font-size: 2.8rem; letter-spacing: 3px; }
 }
 
-/* Apparition dynamique des sections au scroll (déclenchée en JS via IntersectionObserver) */
-/* --reveal-delay (ex: style="--reveal-delay:0.15s") permet d'échelonner plusieurs éléments */
+/* Apparition dynamique des sections au scroll (dÃ©clenchÃ©e en JS via IntersectionObserver) */
+/* --reveal-delay (ex: style="--reveal-delay:0.15s") permet d'Ã©chelonner plusieurs Ã©lÃ©ments */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -622,7 +622,7 @@ body.page-homme .site-header {
     transform: translateY(0);
 }
 
-/* Variante pour les visuels : léger zoom-out en écho à l'effet du hero */
+/* Variante pour les visuels : lÃ©ger zoom-out en Ã©cho Ã  l'effet du hero */
 .reveal-image {
     transform: translateY(40px) scale(1.08);
 }
@@ -631,7 +631,7 @@ body.page-homme .site-header {
     transform: translateY(0) scale(1);
 }
 
-/* Confort visuel : on désactive les animations non essentielles si l'utilisateur le demande */
+/* Confort visuel : on dÃ©sactive les animations non essentielles si l'utilisateur le demande */
 @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-image {
         transition: none;
@@ -679,7 +679,7 @@ body.page-homme .site-header {
     align-items: center;
 }
 
-/* Page d'accueil — sections additionnelles */
+/* Page d'accueil â€” sections additionnelles */
 .section-heading {
     display: flex;
     align-items: baseline;
@@ -787,7 +787,7 @@ body.page-homme .site-header {
 .value-item h3 { margin-bottom: 0.6em; }
 .value-item p { color: var(--color-muted); font-size: 0.95rem; margin: 0; }
 
-/* Bandeau éditorial */
+/* Bandeau Ã©ditorial */
 .editorial-banner {
     position: relative;
     min-height: 60vh;
