@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT NOT NULL UNIQUE,
+    nom TEXT,
+    google_id TEXT UNIQUE,
+    apple_id TEXT UNIQUE,
+    date_creation TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS favoris (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    produit_id INTEGER NOT NULL,
+    date_ajout TEXT DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, produit_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
