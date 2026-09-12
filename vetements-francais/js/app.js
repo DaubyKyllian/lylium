@@ -31,55 +31,75 @@ document.addEventListener('DOMContentLoaded', function () {
     elements.forEach(function (el) { observer.observe(el); });
 })();
 
-// Hero épinglé : zoom du fond + fondu du texte pendant le scroll, navbar transparente → opaque
+// Intro plein écran (rideau) jouée une fois par session, passable au clic/scroll/touche
 (function () {
-    var wrapper = document.getElementById('heroPinWrapper');
-    var heroBg = document.getElementById('heroZoomBg');
-    var heroContent = document.getElementById('heroZoomContent');
-    var heroOverlay = document.getElementById('heroZoomOverlay');
-    var hint = document.getElementById('heroScrollHint');
-    var header = document.querySelector('.site-header');
-    if (!wrapper || !heroBg || !header) return;
+    var intro = document.getElementById('siteIntro');
+    if (!intro) return;
 
-    var maxScale = 1.6;
-    var maxBlur = 4; // px, au pic du zoom
-    var maxBrightness = 0.25; // assombrissement additionnel au pic du zoom
-    var ticking = false;
+    if (intro.classList.contains('site-intro--skip')) return;
 
-    // Ease-out cubic : le zoom démarre vite puis ralentit en fin de scroll.
-    function easeOutCubic(x) {
-        return 1 - Math.pow(1 - x, 3);
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var done = false;
+
+    function markSeen() {
+        try { sessionStorage.setItem('lylium_intro_seen', '1'); } catch (e) {}
     }
+
+    function cleanup() {
+        window.removeEventListener('scroll', skip);
+        window.removeEventListener('click', skip);
+        window.removeEventListener('keydown', skip);
+        intro.removeEventListener('transitionend', remove);
+    }
+
+    function remove() {
+        if (intro.parentNode) intro.parentNode.removeChild(intro);
+    }
+
+    function finish() {
+        if (done) return;
+        done = true;
+        markSeen();
+        cleanup();
+        intro.classList.add('site-intro-hide');
+        intro.addEventListener('transitionend', remove);
+        setTimeout(remove, 1200); // filet de sécurité si transitionend ne se déclenche pas
+    }
+
+    function skip() {
+        intro.classList.add('site-intro-skip-fast');
+        finish();
+    }
+
+    if (reduceMotion) {
+        markSeen();
+        remove();
+        return;
+    }
+
+    requestAnimationFrame(function () {
+        intro.classList.add('site-intro-play');
+    });
+
+    window.addEventListener('scroll', skip, { passive: true, once: true });
+    window.addEventListener('click', skip, { once: true });
+    window.addEventListener('keydown', skip, { once: true });
+
+    setTimeout(finish, 3100);
+})();
+
+// Navbar transparente → opaque après le hero
+(function () {
+    var hero = document.getElementById('hero');
+    var header = document.querySelector('.site-header');
+    if (!hero || !header) return;
+
+    var ticking = false;
 
     function update() {
         ticking = false;
-
-        var rect = wrapper.getBoundingClientRect();
-        var wrapperHeight = wrapper.offsetHeight;
-        var viewportHeight = window.innerHeight;
-        var scrollable = wrapperHeight - viewportHeight;
-        var scrolled = -rect.top;
-        var rawProgress = Math.min(Math.max(scrolled / scrollable, 0), 1);
-        var progress = easeOutCubic(rawProgress);
-
-        var scale = 1 + progress * (maxScale - 1);
-        var blur = progress * maxBlur;
-        var brightness = 1 - progress * maxBrightness;
-        heroBg.style.transform = 'scale(' + scale + ')';
-        heroBg.style.filter = 'blur(' + blur.toFixed(2) + 'px) brightness(' + brightness.toFixed(3) + ')';
-
-        if (heroOverlay) {
-            heroOverlay.style.opacity = 0.55 + progress * 0.45;
-        }
-
-        var textOpacity = 1 - Math.min(rawProgress / 0.5, 1);
-        if (heroContent) {
-            heroContent.style.opacity = textOpacity;
-            heroContent.style.pointerEvents = textOpacity < 0.05 ? 'none' : 'auto';
-        }
-        if (hint) hint.style.opacity = textOpacity;
-
-        if (rawProgress > 0.45) {
+        var rect = hero.getBoundingClientRect();
+        if (rect.bottom <= 80) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');

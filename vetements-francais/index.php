@@ -6,18 +6,42 @@ include 'includes/navbar.php';
 include 'includes/produits-data.php';
 ?>
 
-<div class="hero-pin-wrapper" id="heroPinWrapper">
-    <section class="hero-zoom" id="heroZoom">
-        <div class="hero-zoom-bg" id="heroZoomBg"></div>
-        <div class="hero-zoom-overlay" id="heroZoomOverlay"></div>
-        <div class="hero-zoom-content" id="heroZoomContent">
-            <h1>Lylium</h1>
-            <p class="subtitle">Vêtements français, pensés pour durer.</p>
-            <a href="/collection.php" class="btn">Découvrir la collection</a>
-        </div>
-        <span class="hero-scroll-hint" id="heroScrollHint">Faites défiler ↓</span>
-    </section>
+<div class="site-intro" id="siteIntro">
+    <div class="site-intro-rule"></div>
+    <div class="site-intro-logo" aria-hidden="true">
+        <span>L</span><span>Y</span><span>L</span><span>I</span><span>U</span><span>M</span>
+    </div>
+    <p class="site-intro-tagline">Maison française — depuis toujours pensée pour durer</p>
 </div>
+<script>
+    (function () {
+        try {
+            if (sessionStorage.getItem('lylium_intro_seen')) {
+                document.getElementById('siteIntro').classList.add('site-intro--skip');
+            }
+        } catch (e) {}
+    })();
+</script>
+
+<section class="hero" id="hero">
+    <div class="hero-mark" aria-hidden="true">L</div>
+    <div class="hero-content" id="heroContent">
+        <h1>Lylium</h1>
+        <p class="subtitle">Vêtements français, pensés pour durer.</p>
+        <a href="/collection.php" class="btn hero-btn">Découvrir la collection</a>
+    </div>
+    <div class="hero-marquee" aria-hidden="true">
+        <div class="hero-marquee-track">
+            <span>Fabriqué en France</span><span>✦</span>
+            <span>Matières nobles</span><span>✦</span>
+            <span>Éditions limitées</span><span>✦</span>
+            <span>Fabriqué en France</span><span>✦</span>
+            <span>Matières nobles</span><span>✦</span>
+            <span>Éditions limitées</span><span>✦</span>
+        </div>
+    </div>
+    <span class="hero-scroll-hint" id="heroScrollHint">Faites défiler ↓</span>
+</section>
 
 <section class="section section-alt">
     <div class="container two-col">
