@@ -757,7 +757,6 @@ body.page-home .site-header.scrolled .nav-toggle {
 
 .hero-marquee-track {
     display: flex;
-    gap: 40px;
     width: max-content;
     white-space: nowrap;
     font-size: 0.8rem;
@@ -765,6 +764,15 @@ body.page-home .site-header.scrolled .nav-toggle {
     text-transform: uppercase;
     color: rgba(250, 248, 245, 0.6);
     animation: marquee 26s linear infinite;
+}
+
+/* Marge (plutôt que "gap") sur chaque élément : avec "gap", un conteneur de
+   12 éléments (2 copies de 6) ne compte que 11 espaces, ce qui décale la
+   boucle d'un demi-espace à la jonction. La marge s'applique aux 12 éléments
+   (y compris le dernier), donc les deux copies de 6 + leur espace de fin font
+   exactement la moitié du total, et translateX(-50%) boucle sans à-coup. */
+.hero-marquee-track span {
+    margin-right: 40px;
 }
 
 @keyframes marquee {
