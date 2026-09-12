@@ -24,6 +24,7 @@ $membreDepuis = date('d/m/Y', strtotime($userData['date_creation']));
 ?>
 
 <section class="account-hero">
+    <div class="grain-overlay" aria-hidden="true"></div>
     <div class="account-hero-overlay">
         <div class="container">
             <div class="account-hero-top">

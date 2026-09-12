@@ -2,7 +2,7 @@
 require '../includes/produits-data.php';
 
 $pageTitle = "Homme";
-$bodyClass = "page-homme";
+$navActive = "homme";
 include '../includes/header.php';
 include '../includes/navbar.php';
 
@@ -12,6 +12,7 @@ $produitsFiltres = array_filter($produits, fn($p) => $p['categorie'] === 'homme'
 <section class="section category-title-block">
     <div class="container">
         <p class="breadcrumb"><a href="/index.php">Accueil</a> / Homme</p>
+        <span class="eyebrow">Collection</span>
         <h1>Homme</h1>
         <p class="intro">La collection homme, fabriquée en France.</p>
     </div>

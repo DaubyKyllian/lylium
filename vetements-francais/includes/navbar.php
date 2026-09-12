@@ -9,14 +9,14 @@
         </a>
 
         <div class="category-nav">
-            <a href="categorie/homme.php">Homme</a>
-            <a href="categorie/femme.php">Femme</a>
-            <a href="categorie/enfant.php">Enfant</a>
+            <a href="categorie/homme.php" class="<?= ($navActive ?? '') === 'homme' ? 'active' : '' ?>">Homme</a>
+            <a href="categorie/femme.php" class="<?= ($navActive ?? '') === 'femme' ? 'active' : '' ?>">Femme</a>
+            <a href="categorie/enfant.php" class="<?= ($navActive ?? '') === 'enfant' ? 'active' : '' ?>">Enfant</a>
         </div>
 
         <div class="main-nav">
-            <a href="collection.php">Collection</a>
-            <a href="marque.php">La marque</a>
+            <a href="collection.php" class="<?= ($navActive ?? '') === 'collection' ? 'active' : '' ?>">Collection</a>
+            <a href="marque.php" class="<?= ($navActive ?? '') === 'marque' ? 'active' : '' ?>">La marque</a>
             <a href="contact.php" class="icon-link" aria-label="Contact">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 4h16v14H8l-4 4V4z"/>

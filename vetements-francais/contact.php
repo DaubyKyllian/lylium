@@ -58,6 +58,7 @@ include 'includes/navbar.php';
 
 <section class="contact-section">
     <div class="contact-visual">
+        <div class="grain-overlay" aria-hidden="true"></div>
         <div class="contact-visual-overlay">
             <span class="logo contact-visual-logo">Lylium</span>
 

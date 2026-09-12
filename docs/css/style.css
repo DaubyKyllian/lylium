@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
 
 :root {
     --color-bg: #faf8f5;
@@ -66,9 +66,9 @@ a { color: inherit; text-decoration: none; }
     padding: 18px 24px;
 }
 
-/* Classe ajoutÃ©e en JavaScript pour masquer la navbar */
+/* Classe ajoutée en JavaScript pour masquer la navbar */
 .navbar.hidden {
-  transform: translateY(-100%); /* Pousse la navbar hors de l'Ã©cran */
+  transform: translateY(-100%); /* Pousse la navbar hors de l'écran */
 }
 
 .logo {
@@ -95,6 +95,12 @@ a { color: inherit; text-decoration: none; }
     padding-left: 2px;
     padding-bottom: 4px;
     border-bottom: 1px solid transparent;
+}
+
+.category-nav a:hover,
+.category-nav a.active {
+    color: var(--color-text);
+    border-bottom-color: var(--color-accent);
 }
 
 
@@ -134,7 +140,7 @@ a { color: inherit; text-decoration: none; }
     cursor: pointer;
 }
 
-/* Navbar transparente sur la home, opaque aprÃ¨s le hero */
+/* Navbar transparente sur la home, opaque après le hero */
 body.page-home .site-header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -169,20 +175,21 @@ body.page-home .site-header.scrolled .nav-toggle {
 .login-section {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
-    min-height: calc(100vh - 73px); /* hauteur de l'Ã©cran moins le header */
+    min-height: calc(100vh - 73px); /* hauteur de l'écran moins le header */
 }
 
 .login-visual {
     position: relative;
-    background:
-        linear-gradient(rgba(43, 40, 35, 0.35), rgba(43, 40, 35, 0.55)),
-        url('../images/ateliers.jpg') center / cover no-repeat;
+    background: var(--color-text);
     display: flex;
     align-items: flex-end;
     padding: 50px;
+    overflow: hidden;
 }
 
 .login-visual-overlay {
+    position: relative;
+    z-index: 1;
     color: #fff;
 }
 
@@ -255,30 +262,12 @@ body.page-home .site-header.scrolled .nav-toggle {
     }
 }
 
-/* Fond plein page pour une catÃ©gorie */
-body.page-homme {
-    position: relative;
-}
-
-body.page-homme::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background:
-        linear-gradient(rgba(250, 248, 245, 0.88), rgba(250, 248, 245, 0.88)),
-        url('../images/homme-hero.jpg') center top / cover no-repeat;
-}
-
-body.page-homme .site-header {
-    background: rgba(250, 248, 245, 0.75);
-    backdrop-filter: blur(6px);
-}
-
 .category-title-block {
     padding-top: 60px;
     padding-bottom: 30px;
 }
+
+.category-title-block .eyebrow { margin-bottom: 10px; }
 
 .category-title-block .breadcrumb {
     font-size: 0.8rem;
@@ -300,15 +289,14 @@ body.page-homme .site-header {
 
 .contact-visual {
     position: relative;
-    background:
-        linear-gradient(rgba(43, 40, 35, 0.4), rgba(43, 40, 35, 0.55)),
-        url('../images/ateliers.jpg') center / cover no-repeat;
+    background: var(--color-text);
     display: flex;
     align-items: flex-end;
     padding: 50px;
+    overflow: hidden;
 }
 
-.contact-visual-overlay { color: #fff; width: 100%; }
+.contact-visual-overlay { position: relative; z-index: 1; color: #fff; width: 100%; }
 
 .contact-visual-logo { color: #fff; font-size: 1.8rem; }
 
@@ -368,13 +356,13 @@ body.page-homme .site-header {
 
 /* Hero du compte */
 .account-hero {
-    background:
-        linear-gradient(rgba(43, 40, 35, 0.25), rgba(43, 40, 35, 0.45)),
-        url('../images/ateliers.jpg') center / cover no-repeat;
+    position: relative;
+    background: var(--color-text);
     padding: 60px 0 0;
+    overflow: hidden;
 }
 
-.account-hero-overlay { color: #fff; }
+.account-hero-overlay { position: relative; z-index: 1; color: #fff; }
 
 .account-hero-top {
     display: flex;
@@ -501,7 +489,7 @@ body.page-homme .site-header {
     .account-dashboard { grid-template-columns: 1fr; }
 }
 
-/* Intro plein Ã©cran jouÃ©e une fois au chargement (rideau qui se lÃ¨ve) */
+/* Intro plein écran jouée une fois au chargement (rideau qui se lève) */
 .site-intro {
     position: fixed;
     inset: 0;
@@ -575,7 +563,7 @@ body.page-homme .site-header {
     transform: translateY(0);
 }
 
-/* Le rideau se lÃ¨ve pour rÃ©vÃ©ler le site */
+/* Le rideau se lève pour révéler le site */
 .site-intro-hide {
     transform: translateY(-100%);
     transition: transform 0.9s cubic-bezier(0.87, 0, 0.13, 1);
@@ -594,7 +582,7 @@ body.page-homme .site-header {
     }
 }
 
-/* Hero â€” plus de photo : typographie, matiÃ¨re et une pointe de mouvement */
+/* Hero — plus de photo : typographie, matière et une pointe de mouvement */
 .hero {
     position: relative;
     height: 100vh;
@@ -607,8 +595,8 @@ body.page-homme .site-header {
     overflow: hidden;
 }
 
-/* Grain subtil pour donner du grain/de la matiÃ¨re aux fonds sombres, sans photo */
-.hero-grain {
+/* Grain subtil pour donner du grain/de la matière aux fonds sombres, sans photo */
+.grain-overlay {
     position: absolute;
     inset: 0;
     pointer-events: none;
@@ -648,7 +636,7 @@ body.page-homme .site-header {
     opacity: 1;
 }
 
-/* EntrÃ©e en fondu-cascade, synchronisÃ©e avec la levÃ©e du rideau */
+/* Entrée en fondu-cascade, synchronisée avec la levée du rideau */
 .hero-content h1,
 .hero-content .subtitle,
 .hero-content .btn {
@@ -731,7 +719,7 @@ body.page-homme .site-header {
     .hero-marquee { bottom: 60px; }
 }
 
-/* Petit label trackÃ© utilisÃ© au-dessus des titres de section (repÃ¨re Ã©ditorial) */
+/* Petit label tracké utilisé au-dessus des titres de section (repère éditorial) */
 .eyebrow {
     display: block;
     font-size: 0.75rem;
@@ -741,8 +729,8 @@ body.page-homme .site-header {
     margin-bottom: 14px;
 }
 
-/* Apparition dynamique des sections au scroll (dÃ©clenchÃ©e en JS via IntersectionObserver) */
-/* --reveal-delay (ex: style="--reveal-delay:0.15s") permet d'Ã©chelonner plusieurs Ã©lÃ©ments */
+/* Apparition dynamique des sections au scroll (déclenchée en JS via IntersectionObserver) */
+/* --reveal-delay (ex: style="--reveal-delay:0.15s") permet d'échelonner plusieurs éléments */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -755,7 +743,7 @@ body.page-homme .site-header {
     transform: translateY(0);
 }
 
-/* Variante pour les visuels : lÃ©ger zoom-out en Ã©cho Ã  l'effet du hero */
+/* Variante pour les visuels : léger zoom-out en écho à l'effet du hero */
 .reveal-image {
     transform: translateY(40px) scale(1.08);
 }
@@ -764,7 +752,7 @@ body.page-homme .site-header {
     transform: translateY(0) scale(1);
 }
 
-/* Confort visuel : on dÃ©sactive les animations non essentielles si l'utilisateur le demande */
+/* Confort visuel : on désactive les animations non essentielles si l'utilisateur le demande */
 @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-image {
         transition: none;
@@ -813,7 +801,7 @@ body.page-homme .site-header {
     align-items: center;
 }
 
-/* Page d'accueil â€” sections additionnelles */
+/* Page d'accueil — sections additionnelles */
 .section-heading {
     display: flex;
     align-items: flex-end;
@@ -824,7 +812,7 @@ body.page-homme .site-header {
 
 .section-heading h2 { margin-bottom: 0; }
 
-/* FabriquÃ© en France â€” dÃ©claration Ã©ditoriale, sans photo */
+/* Fabriqué en France — déclaration éditoriale, sans photo */
 .manifesto-inner {
     text-align: center;
 }
@@ -836,7 +824,7 @@ body.page-homme .site-header {
     margin: 0 0 0.9em;
 }
 
-/* Nos valeurs â€” intitulÃ© */
+/* Nos valeurs — intitulé */
 .values-heading {
     text-align: center;
     max-width: 520px;
@@ -898,6 +886,52 @@ body.page-homme .site-header {
     transform: scale(1.08);
 }
 
+/* Lookbook — diptyque de silhouettes */
+.look-diptych {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.look-frame { display: block; }
+
+.look-diptych .look-frame:nth-child(2) {
+    margin-top: 60px;
+}
+
+.look-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background-color: #e9e4da;
+}
+
+.look-image::before {
+    content: '';
+    position: absolute;
+    inset: -4%;
+    background-image: var(--img);
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.7s cubic-bezier(0.16, 0.8, 0.28, 1);
+}
+
+.look-frame:hover .look-image::before {
+    transform: scale(1.06);
+}
+
+.look-caption {
+    margin-top: 28px;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-muted);
+}
+
+@media (max-width: 800px) {
+    .look-diptych { grid-template-columns: 1fr; gap: 40px; }
+    .look-diptych .look-frame:nth-child(2) { margin-top: 0; }
+}
+
 .produit-cta {
     display: flex;
     flex-direction: column;
@@ -942,7 +976,7 @@ body.page-homme .site-header {
 .value-item h3 { margin-bottom: 0.6em; }
 .value-item p { color: var(--color-muted); font-size: 0.95rem; margin: 0; }
 
-/* Bandeau Ã©ditorial â€” citation sur fond sombre, en Ã©cho au hero (sans photo) */
+/* Bandeau éditorial — citation sur fond sombre, en écho au hero (sans photo) */
 .editorial-banner {
     position: relative;
     min-height: 50vh;

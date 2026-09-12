@@ -1,20 +1,20 @@
 <?php
 require '../includes/produits-data.php';
 
-$pageTitle = "Femme";
-$navActive = "femme";
+$pageTitle = "Enfant";
+$navActive = "enfant";
 include '../includes/header.php';
 include '../includes/navbar.php';
 
-$produitsFiltres = array_filter($produits, fn($p) => $p['categorie'] === 'femme');
+$produitsFiltres = array_filter($produits, fn($p) => $p['categorie'] === 'enfant');
 ?>
 
 <section class="section category-title-block">
     <div class="container">
-        <p class="breadcrumb"><a href="/index.php">Accueil</a> / Femme</p>
+        <p class="breadcrumb"><a href="/index.php">Accueil</a> / Enfant</p>
         <span class="eyebrow">Collection</span>
-        <h1>Femme</h1>
-        <p class="intro">La collection femme, fabriquée en France.</p>
+        <h1>Enfant</h1>
+        <p class="intro">La collection enfant, fabriquée en France.</p>
     </div>
 </section>
 

@@ -6,6 +6,7 @@ include 'includes/navbar.php';
 
 <section class="login-section">
     <div class="login-visual">
+        <div class="grain-overlay" aria-hidden="true"></div>
         <div class="login-visual-overlay">
             <span class="logo login-visual-logo">Lylium</span>
             <p class="login-visual-quote">« S'habiller avec élégance, sans sacrifier la traçabilité. »</p>

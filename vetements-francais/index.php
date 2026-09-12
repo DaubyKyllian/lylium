@@ -24,7 +24,7 @@ include 'includes/produits-data.php';
 </script>
 
 <section class="hero" id="hero">
-    <div class="hero-grain" aria-hidden="true"></div>
+    <div class="grain-overlay" aria-hidden="true"></div>
     <div class="hero-content" id="heroContent">
         <h1>Lylium</h1>
         <p class="subtitle">Vêtements français, pensés pour durer.</p>
@@ -108,7 +108,7 @@ include 'includes/produits-data.php';
 </section>
 
 <section class="editorial-banner">
-    <div class="hero-grain" aria-hidden="true"></div>
+    <div class="grain-overlay" aria-hidden="true"></div>
     <div class="editorial-content">
         <div class="editorial-rule reveal"></div>
         <p class="editorial-quote reveal" style="--reveal-delay:0.1s">« La mode passe, le style reste. »</p>
