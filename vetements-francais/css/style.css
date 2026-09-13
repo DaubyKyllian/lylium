@@ -217,11 +217,18 @@ body.page-home .site-header.scrolled .nav-toggle {
 
 .login-visual {
     position: relative;
-    background: var(--color-ink);
+    background: url("../images/ateliers.jpg") center/cover no-repeat;
     display: flex;
     align-items: flex-end;
     padding: 50px;
     overflow: hidden;
+}
+
+.login-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--color-ink) 55%, transparent);
 }
 
 .login-visual-overlay {
@@ -1182,6 +1189,7 @@ body.page-home .site-header.scrolled .nav-toggle {
     font-style: italic;
     line-height: 1.4;
     margin-bottom: 1em;
+    color: var(--color-paper);
 }
 
 @media (max-width: 800px) {
