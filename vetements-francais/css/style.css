@@ -686,17 +686,25 @@ body.page-home .site-header.scrolled .nav-toggle {
     }
 }
 
-/* Hero — plus de photo : typographie, matière et une pointe de mouvement */
+/* Hero — photo de fond avec calque couleur de la maison */
 .hero {
     position: relative;
     height: 100vh;
     min-height: 560px;
-    background: var(--color-ink);
+    background: url("../images/hero-provence.jpeg") center/cover no-repeat;
     color: var(--color-paper);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--color-ink) 80%, transparent);
+    z-index: 0;
 }
 
 /* Grain subtil pour donner du grain/de la matière aux fonds sombres, sans photo */
