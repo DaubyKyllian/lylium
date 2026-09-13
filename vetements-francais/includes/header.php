@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/session.php';
+
 $siteName = "Lylium";
 $pageTitle = $pageTitle ?? "L'élégance à la française au quotidien";
 
