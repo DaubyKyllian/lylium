@@ -17,6 +17,10 @@ $pageTitle = $pageTitle ?? "L'élégance à la française au quotidien";
 
     <meta name="description" content="<?= htmlspecialchars($siteName) ?>, vêtements conçus et fabriqués en France.">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap">
+
     <link rel="stylesheet" href="css/style.css">
     <script>
         (function () {

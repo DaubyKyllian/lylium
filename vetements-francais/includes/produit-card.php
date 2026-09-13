@@ -7,9 +7,11 @@
  * sinon une pastille de couleur (repère visuel en attendant la photo).
  */
 ?>
-<a href="/produit.php?id=<?= $id ?>" class="card produit-card">
+<a href="/produit.php?id=<?= $id ?>" class="card produit-card reveal">
     <?php if (!empty($produit['image'])): ?>
-        <div class="card-image" style="background-image:url('<?= htmlspecialchars($produit['image']) ?>')"></div>
+        <div class="card-image card-image--photo">
+            <img src="<?= htmlspecialchars($produit['image']) ?>" alt="<?= htmlspecialchars($produit['nom']) ?>" loading="lazy" decoding="async" onload="this.classList.add('is-loaded')">
+        </div>
     <?php else: ?>
         <div class="card-image card-image--swatch" style="background-color:<?= htmlspecialchars($produit['couleur'] ?? '#e9e4da') ?>">
             <span class="card-image-label"><?= htmlspecialchars($produit['nom']) ?></span>

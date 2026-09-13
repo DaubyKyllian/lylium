@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+/* Transition douce entre les pages (navigation multi-documents) — support
+   progressif : ignoré sans effet dans les navigateurs qui ne le connaissent
+   pas encore, pas de flash blanc dans ceux qui le supportent. */
+@view-transition {
+    navigation: auto;
+}
 
 :root {
     --color-bg: #faf8f5;
@@ -37,6 +42,18 @@ body {
     background: var(--color-bg);
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
+    animation: pageFadeIn 0.35s ease;
+}
+
+/* Filet de sécurité pour la navigation dans les navigateurs sans
+   @view-transition : un fondu léger évite le flash blanc au chargement. */
+@keyframes pageFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body { animation: none; }
 }
 
 h1, h2, h3 {
@@ -717,10 +734,13 @@ body.page-home .site-header.scrolled .nav-toggle {
     color: var(--color-paper);
 }
 
-.hero-btn:hover {
+.hero-btn::before {
     background: var(--color-paper);
+}
+
+.hero-btn:hover {
     color: var(--color-ink);
-    opacity: 1;
+    border-color: var(--color-paper);
 }
 
 /* Entrée en fondu-cascade, synchronisée avec la levée du rideau */
@@ -865,8 +885,12 @@ body.page-home .site-header.scrolled .nav-toggle {
     .site-intro { display: none; }
 }
 
-/* Buttons */
+/* Buttons — un seul style fort (remplissage au survol), décliné en outline
+   et en variante hero. Le fondu passe par ::before (z-index négatif dans le
+   contexte d'empilement isolé du bouton) pour ne jamais recouvrir le texte,
+   qui reste donc lisible sans avoir à l'entourer d'un <span>. */
 .btn {
+    position: relative;
     display: inline-block;
     padding: 12px 28px;
     background: var(--color-text);
@@ -876,9 +900,44 @@ body.page-home .site-header.scrolled .nav-toggle {
     font-size: 0.85rem;
     border: 1px solid var(--color-text);
     cursor: pointer;
+    overflow: hidden;
+    isolation: isolate;
+    transition: color 0.4s cubic-bezier(0.16, 0.8, 0.28, 1),
+                letter-spacing 0.4s ease,
+                border-color 0.4s ease,
+                transform 0.3s cubic-bezier(0.16, 0.8, 0.28, 1);
 }
 
-.btn:hover { opacity: 0.85; }
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--color-bg);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.16, 0.8, 0.28, 1);
+}
+
+.btn:hover {
+    color: var(--color-text);
+    letter-spacing: 1.5px;
+    transform: translateY(-2px);
+}
+
+.btn:hover::before { transform: scaleX(1); }
+
+.btn:active { transform: translateY(0); }
+
+.btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn, .btn::before { transition: none; }
+    .btn:hover { transform: none; }
+}
 
 .btn-outline {
     background: transparent;
@@ -951,14 +1010,20 @@ body.page-home .site-header.scrolled .nav-toggle {
 .link-underline:hover { color: var(--color-text); }
 .link-underline:hover::after { right: 0; }
 
-/* Produits phares */
-.featured-grid .produit-card {
+/* Cartes produit — même effet de survol (soulèvement + ombre portée) partout
+   sur le site, pas seulement dans la sélection de la page d'accueil. */
+.produit-card {
     transition: transform 0.5s cubic-bezier(0.16, 0.8, 0.28, 1), box-shadow 0.5s ease;
 }
 
-.featured-grid .produit-card:hover {
+.produit-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 24px 48px -28px rgba(43, 40, 35, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .produit-card { transition: none; }
+    .produit-card:hover { transform: none; }
 }
 
 .featured-image {
@@ -1123,6 +1188,14 @@ body.page-home .site-header.scrolled .nav-toggle {
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
+/* Légère cascade d'apparition sur les grilles de produits (au lieu d'un bloc
+   qui apparaît d'un coup), plafonnée pour ne pas retarder les longues listes */
+.grid > .reveal:nth-child(1) { --reveal-delay: 0s; }
+.grid > .reveal:nth-child(2) { --reveal-delay: 0.05s; }
+.grid > .reveal:nth-child(3) { --reveal-delay: 0.1s; }
+.grid > .reveal:nth-child(4) { --reveal-delay: 0.15s; }
+.grid > .reveal:nth-child(n+5) { --reveal-delay: 0.2s; }
+
 .card {
     background: var(--color-surface);
     padding: 20px;
@@ -1139,9 +1212,49 @@ body.page-home .site-header.scrolled .nav-toggle {
     background-position: center;
     background-color: #e9e4da;
     margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
 }
 
 .image-placeholder.large { aspect-ratio: 4 / 5; margin-bottom: 0; }
+
+/* Fiches avec vraie photo : l'image se charge en lazy (attribut loading sur
+   la balise <img>, impossible avec un simple background-image CSS) et
+   s'affiche en fondu par-dessus un "skeleton" animé qui comble l'attente. */
+.card-image--photo {
+    background-image: linear-gradient(100deg, var(--color-bg-alt) 30%, var(--color-line) 50%, var(--color-bg-alt) 70%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.6s ease-in-out infinite;
+}
+
+.card-image--photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 0.8, 0.28, 1);
+}
+
+.card-image--photo img.is-loaded { opacity: 1; }
+
+.card-image--photo:has(img.is-loaded) {
+    animation: none;
+    background-image: none;
+}
+
+.produit-card:hover .card-image--photo img { transform: scale(1.06); }
+
+@keyframes skeletonShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-image--photo { animation: none; }
+    .produit-card:hover .card-image--photo img { transform: none; }
+}
 
 /* Pastille de couleur pour les produits sans photo (repère visuel, pas une erreur) */
 .card-image--swatch {
@@ -1239,10 +1352,12 @@ body.page-home .site-header.scrolled .nav-toggle {
 .footer-social a {
     color: var(--color-muted);
     display: inline-flex;
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 0.8, 0.28, 1);
 }
 
 .footer-social a:hover {
     color: var(--color-text);
+    transform: translateY(-3px);
 }
 
 .footer-col {
@@ -1262,6 +1377,7 @@ body.page-home .site-header.scrolled .nav-toggle {
 .footer-col a {
     color: var(--color-muted);
     font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
 
 .footer-col a:hover {
