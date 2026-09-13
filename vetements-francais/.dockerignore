@@ -1,0 +1,7 @@
+vendor/
+database/*.sqlite
+includes/mail-config.php
+.git
+.gitignore
+DOCUMENTATION.md
+DOCUMENTATION.pdf
