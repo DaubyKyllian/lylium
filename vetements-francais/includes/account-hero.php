@@ -6,7 +6,7 @@
  *   $accountActiveTab    string  'presentation' | 'favoris' | 'commandes'
  */
 ?>
-<section class="account-hero">
+<section class="page-banner page-banner--dark account-hero">
     <div class="grain-overlay" aria-hidden="true"></div>
     <div class="account-hero-overlay">
         <div class="container">

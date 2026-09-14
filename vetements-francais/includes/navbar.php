@@ -2,6 +2,17 @@
 
 <header class="site-header">
 
+    <div class="top-bar">
+        <div class="top-bar-track">
+            <span>Livraison offerte en France dès 120&nbsp;€</span>
+            <span>·</span>
+            <span>Fabriqué et confectionné en France</span>
+            <span>·</span>
+            <span>Retours gratuits sous 30 jours</span>
+            <span>·</span>
+        </div>
+    </div>
+
     <nav class="navbar">
 
         <a href="index.php" class="logo">

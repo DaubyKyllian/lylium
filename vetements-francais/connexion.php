@@ -4,17 +4,17 @@ include 'includes/header.php';
 include 'includes/navbar.php';
 ?>
 
-<section class="login-section">
-    <div class="login-visual">
+<section class="split-page">
+    <div class="split-page-visual">
         <div class="grain-overlay" aria-hidden="true"></div>
-        <div class="login-visual-overlay">
-            <span class="logo login-visual-logo">Lylium</span>
-            <p class="login-visual-quote">« S'habiller avec élégance, sans sacrifier la traçabilité. »</p>
+        <div class="split-page-visual-overlay">
+            <span class="logo split-page-logo">Lylium</span>
+            <p class="split-page-quote">« S'habiller avec élégance, sans sacrifier la traçabilité. »</p>
         </div>
     </div>
 
-    <div class="login-panel">
-        <div class="login-card">
+    <div class="split-page-panel">
+        <div class="split-page-card">
             <h1>Bon retour</h1>
             <p class="intro">Connecte-toi pour retrouver tes favoris et suivre tes commandes.</p>
 
@@ -42,7 +42,7 @@ include 'includes/navbar.php';
                 En continuant, tu acceptes nos conditions d'utilisation.
             </p>
 
-            <a href="index.php" class="login-back">← Retour à l'accueil</a>
+            <a href="index.php" class="split-page-back">← Retour à l'accueil</a>
         </div>
     </div>
 </section>

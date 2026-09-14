@@ -42,7 +42,7 @@ include 'includes/account-hero.php';
                     <a href="collection.php" class="btn btn-outline">Découvrir la collection</a>
                 </div>
             <?php else: ?>
-                <div class="grid grid-3">
+                <div class="catalogue-grid catalogue-grid--compact">
                     <?php foreach ($favorisIds as $id): ?>
                         <?php if (isset($produits[$id])): $produit = $produits[$id]; ?>
                             <?php include 'includes/produit-card.php'; ?>

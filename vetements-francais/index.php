@@ -24,35 +24,58 @@ include 'includes/produits-data.php';
 </script>
 
 <section class="hero" id="hero">
+    <div class="hero-scrim" aria-hidden="true"></div>
     <div class="grain-overlay" aria-hidden="true"></div>
-    <div class="hero-content" id="heroContent">
-        <h1>Lylium</h1>
-        <p class="subtitle">Vêtements français, pensés pour durer.</p>
-        <a href="/collection.php" class="btn hero-btn">Découvrir la collection</a>
+
+    <div class="hero-frame container">
+        <div class="hero-top-row">
+            <span class="eyebrow eyebrow--light">Collection permanente</span>
+            <span class="hero-ref">Lylium — depuis toujours</span>
+        </div>
+
+        <h1 class="hero-title">L'élégance<br>tissée en<br><em>France</em></h1>
+
+        <div class="hero-bottom-row">
+            <p class="hero-lede">Lin, laine mérinos et coton peigné, façonnés en petites séries par des ateliers que nous connaissons — pour des pièces qui traversent les saisons, pas les tendances.</p>
+            <a href="/collection.php" class="btn hero-btn">Découvrir la collection</a>
+        </div>
     </div>
-    <div class="hero-marquee" aria-hidden="true">
-        <div class="hero-marquee-track">
-            <span>Fabriqué en France</span><span>✦</span>
-            <span>Matières nobles</span><span>✦</span>
-            <span>Éditions limitées</span><span>✦</span>
-            <span>Fabriqué en France</span><span>✦</span>
-            <span>Matières nobles</span><span>✦</span>
-            <span>Éditions limitées</span><span>✦</span>
+
+    <div class="hero-ticker" aria-hidden="true">
+        <div class="hero-ticker-track">
+            <span class="hero-ticker-set">
+                <span>Fabriqué en France</span><span>✦</span>
+                <span>Matières nobles</span><span>✦</span>
+                <span>Éditions limitées</span><span>✦</span>
+                <span>Fabriqué en France</span><span>✦</span>
+                <span>Matières nobles</span><span>✦</span>
+                <span>Éditions limitées</span><span>✦</span>
+            </span>
+            <span class="hero-ticker-set">
+                <span>Fabriqué en France</span><span>✦</span>
+                <span>Matières nobles</span><span>✦</span>
+                <span>Éditions limitées</span><span>✦</span>
+                <span>Fabriqué en France</span><span>✦</span>
+                <span>Matières nobles</span><span>✦</span>
+                <span>Éditions limitées</span><span>✦</span>
+            </span>
         </div>
     </div>
     <span class="hero-scroll-hint" id="heroScrollHint">Faites défiler ↓</span>
 </section>
 
-<section class="section section-alt manifesto">
-    <div class="container narrow manifesto-inner">
-        <span class="eyebrow reveal">Notre engagement</span>
-        <p class="manifesto-statement reveal" style="--reveal-delay:0.08s">Chaque pièce Lylium est conçue et confectionnée par des ateliers français,
-           pour traverser les saisons — pas seulement les tendances.</p>
-        <a href="/marque.php" class="link-underline reveal" style="--reveal-delay:0.18s">Découvrir notre histoire</a>
+<section class="section split-intro">
+    <div class="container split-intro-grid">
+        <p class="split-intro-quote reveal">Chaque pièce Lylium est conçue et confectionnée par des ateliers français, pour traverser les saisons — pas seulement les tendances.</p>
+        <div class="split-intro-aside reveal" style="--reveal-delay:0.15s">
+            <span class="eyebrow">Notre engagement</span>
+            <p>Nous travaillons en petites séries avec une poignée d'ateliers partenaires, du Nord à l'Auvergne, choisis pour leur savoir-faire plutôt que pour leurs prix.</p>
+            <a href="/marque.php" class="link-underline">Découvrir notre histoire →</a>
+        </div>
     </div>
 </section>
 
-<section class="section">
+<section class="section section-alt">
     <div class="container">
         <div class="section-heading reveal">
             <div>
@@ -62,56 +85,65 @@ include 'includes/produits-data.php';
             <a href="/collection.php" class="link-underline">Voir toute la collection</a>
         </div>
 
-        <div class="grid grid-3 featured-grid">
-            <a href="produit.php?id=5" class="card produit-card reveal">
-                <div class="card-image featured-image" style="--img:url('/<?= htmlspecialchars($produits[5]['image']) ?>')"></div>
-                <h3><?= htmlspecialchars($produits[5]['nom']) ?></h3>
-                <p class="prix"><?= (int)$produits[5]['prix'] ?> €</p>
+        <div class="feature-grid">
+            <a href="produit.php?id=5" class="feature-tile feature-tile--hero reveal">
+                <div class="feature-tile-image" style="--img:url('/<?= htmlspecialchars($produits[5]['image']) ?>')"></div>
+                <div class="feature-tile-meta">
+                    <h3><?= htmlspecialchars($produits[5]['nom']) ?></h3>
+                    <p class="prix"><?= (int)$produits[5]['prix'] ?> €</p>
+                </div>
             </a>
-            <a href="produit.php?id=3" class="card produit-card reveal" style="--reveal-delay:0.1s">
-                <div class="card-image featured-image" style="--img:url('/<?= htmlspecialchars($produits[3]['image']) ?>')"></div>
-                <h3><?= htmlspecialchars($produits[3]['nom']) ?></h3>
-                <p class="prix"><?= (int)$produits[3]['prix'] ?> €</p>
+            <a href="produit.php?id=3" class="feature-tile reveal" style="--reveal-delay:0.1s">
+                <div class="feature-tile-image" style="--img:url('/<?= htmlspecialchars($produits[3]['image']) ?>')"></div>
+                <div class="feature-tile-meta">
+                    <h3><?= htmlspecialchars($produits[3]['nom']) ?></h3>
+                    <p class="prix"><?= (int)$produits[3]['prix'] ?> €</p>
+                </div>
             </a>
-            <a href="/collection.php" class="produit-cta reveal" style="--reveal-delay:0.2s">
-                <span class="produit-cta-label">Voir toute<br>la collection</span>
-                <span class="produit-cta-arrow" aria-hidden="true">→</span>
+            <a href="/collection.php" class="feature-tile feature-tile--cta reveal" style="--reveal-delay:0.2s">
+                <span class="feature-tile-cta-label">Voir toute<br>la collection</span>
+                <span class="feature-tile-cta-arrow" aria-hidden="true">→</span>
             </a>
         </div>
     </div>
 </section>
 
-<section class="section section-alt values-section">
+<section class="section craft-strip">
     <div class="container">
         <div class="values-heading reveal">
             <span class="eyebrow">Pourquoi Lylium</span>
             <h2>Une exigence à chaque étape.</h2>
         </div>
-        <div class="values-grid">
-            <div class="value-item reveal">
-                <span class="value-index">01</span>
+        <ol class="craft-steps">
+            <li class="craft-step reveal">
+                <span class="craft-num">01</span>
                 <h3>Matières nobles</h3>
                 <p>Lin, laine mérinos, coton peigné — choisis pour leur tenue dans le temps, pas pour leur prix.</p>
-            </div>
-            <div class="value-item reveal" style="--reveal-delay:0.12s">
-                <span class="value-index">02</span>
+            </li>
+            <li class="craft-step reveal" style="--reveal-delay:0.1s">
+                <span class="craft-num">02</span>
                 <h3>Ateliers français</h3>
                 <p>Chaque pièce est coupée et cousue dans un atelier partenaire, en petite série.</p>
-            </div>
-            <div class="value-item reveal" style="--reveal-delay:0.24s">
-                <span class="value-index">03</span>
+            </li>
+            <li class="craft-step reveal" style="--reveal-delay:0.2s">
+                <span class="craft-num">03</span>
+                <h3>Contrôle qualité</h3>
+                <p>Chaque finition est vérifiée à la main avant expédition, sans exception.</p>
+            </li>
+            <li class="craft-step reveal" style="--reveal-delay:0.3s">
+                <span class="craft-num">04</span>
                 <h3>Pensé pour durer</h3>
                 <p>Des coupes intemporelles, loin des collections jetables et des tendances éphémères.</p>
-            </div>
-        </div>
+            </li>
+        </ol>
     </div>
 </section>
 
-<section class="editorial-banner">
+<section class="quote-band">
     <div class="grain-overlay" aria-hidden="true"></div>
-    <div class="editorial-content">
-        <div class="editorial-rule reveal"></div>
-        <p class="editorial-quote reveal" style="--reveal-delay:0.1s">« La mode passe, le style reste. »</p>
+    <div class="quote-band-inner">
+        <span class="quote-mark reveal-image reveal" aria-hidden="true">&ldquo;</span>
+        <p class="quote-band-text reveal" style="--reveal-delay:0.1s">La mode passe, le style reste.</p>
         <a href="/lookbook.php" class="btn hero-btn reveal" style="--reveal-delay:0.2s">Découvrir le lookbook</a>
     </div>
 </section>

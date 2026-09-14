@@ -58,11 +58,11 @@ include 'includes/header.php';
 include 'includes/navbar.php';
 ?>
 
-<section class="contact-section">
-    <div class="contact-visual">
+<section class="split-page">
+    <div class="split-page-visual">
         <div class="grain-overlay" aria-hidden="true"></div>
-        <div class="contact-visual-overlay">
-            <span class="logo contact-visual-logo">Lylium</span>
+        <div class="split-page-visual-overlay">
+            <span class="logo split-page-logo">Lylium</span>
 
             <div class="contact-info">
                 <div class="contact-info-item">
@@ -81,8 +81,8 @@ include 'includes/navbar.php';
         </div>
     </div>
 
-    <div class="contact-panel">
-        <div class="contact-card">
+    <div class="split-page-panel">
+        <div class="split-page-card">
             <h1>Nous contacter</h1>
             <p class="intro">Une question sur un produit, une commande ou la marque ? Écrivez-nous.</p>
 
@@ -110,7 +110,7 @@ include 'includes/navbar.php';
                 <button type="submit" class="btn">Envoyer</button>
             </form>
 
-            <a href="index.php" class="login-back">← Retour à l'accueil</a>
+            <a href="index.php" class="split-page-back">← Retour à l'accueil</a>
         </div>
     </div>
 </section>

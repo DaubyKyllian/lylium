@@ -4,8 +4,8 @@ include 'includes/header.php';
 include 'includes/navbar.php';
 ?>
 
-<section class="section category-title-block">
-    <div class="container">
+<section class="page-banner">
+    <div class="container page-banner-inner">
         <p class="breadcrumb"><a href="/index.php">Accueil</a> / Mentions légales</p>
         <span class="eyebrow">Informations légales</span>
         <h1>Mentions légales</h1>

@@ -17,10 +17,10 @@ if ($q !== '') {
 }
 ?>
 
-<section class="category-hero">
+<section class="page-banner page-banner--dark">
     <div class="grain-overlay" aria-hidden="true"></div>
-    <div class="container category-hero-inner">
-        <span class="eyebrow">Recherche</span>
+    <div class="container page-banner-inner">
+        <span class="eyebrow eyebrow--light">Recherche</span>
         <h1>Que cherchez-vous ?</h1>
         <form method="get" class="search-form">
             <input type="search" name="q" value="<?= htmlspecialchars($q) ?>" placeholder="Un nom, une matière, une couleur…" autofocus>
@@ -47,7 +47,7 @@ if ($q !== '') {
             <p class="category-count">
                 <?= count($resultats) ?> résultat<?= count($resultats) > 1 ? 's' : '' ?> pour « <?= htmlspecialchars($q) ?> »
             </p>
-            <div class="grid grid-4">
+            <div class="catalogue-grid">
                 <?php foreach ($resultats as $id => $produit): ?>
                     <?php include 'includes/produit-card.php'; ?>
                 <?php endforeach; ?>

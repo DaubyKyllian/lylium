@@ -27,8 +27,8 @@ $faq = [
 ];
 ?>
 
-<section class="section category-title-block">
-    <div class="container">
+<section class="page-banner">
+    <div class="container page-banner-inner">
         <p class="breadcrumb"><a href="/index.php">Accueil</a> / Livraison &amp; retours</p>
         <span class="eyebrow">Questions fréquentes</span>
         <h1>Livraison &amp; retours</h1>

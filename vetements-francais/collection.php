@@ -26,11 +26,17 @@ switch ($tri) {
 }
 ?>
 
+<section class="page-banner page-banner--dark">
+    <div class="grain-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+        <span class="eyebrow eyebrow--light">Toutes nos pièces</span>
+        <h1>La collection</h1>
+        <p class="intro intro--light">Toutes nos pièces, fabriquées en France.</p>
+    </div>
+</section>
+
 <section class="section">
     <div class="container">
-        <span class="eyebrow">Toutes nos pièces</span>
-        <h1>La collection</h1>
-        <p class="intro">Toutes nos pièces, fabriquées en France.</p>
 
         <form method="get" class="collection-toolbar">
             <div class="toolbar-field">
@@ -64,7 +70,7 @@ switch ($tri) {
                 <a href="/collection.php" class="btn btn-outline">Réinitialiser</a>
             </div>
         <?php else: ?>
-            <div class="grid grid-4">
+            <div class="catalogue-grid">
                 <?php foreach ($produitsAffiches as $id => $produit): ?>
                     <?php include 'includes/produit-card.php'; ?>
                 <?php endforeach; ?>

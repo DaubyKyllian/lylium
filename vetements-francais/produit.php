@@ -57,119 +57,134 @@ function etoiles($note) {
 }
 ?>
 
-<section class="section">
-    <div class="container">
-        <?php if ($produit): ?>
-            <div class="two-col produit-fiche">
-                <?php if (!empty($produit['image'])): ?>
-                    <div class="image-placeholder large" style="background-image:url('<?= htmlspecialchars($produit['image']) ?>')"></div>
-                <?php else: ?>
-                    <div class="image-placeholder large card-image--swatch" style="background-color:<?= htmlspecialchars($produit['couleur'] ?? '#e9e4da') ?>">
-                        <span class="card-image-label"><?= htmlspecialchars($produit['nom']) ?></span>
-                    </div>
-                <?php endif; ?>
-                <div>
-                    <h1><?= htmlspecialchars($produit['nom']) ?></h1>
-                    <p class="prix prix-lg"><?= (int)$produit['prix'] ?> €</p>
-
-                    <?php if ($avisMoyenne !== null): ?>
-                        <p class="avis-resume">
-                            <span class="avis-etoiles" aria-hidden="true"><?= etoiles($avisMoyenne) ?></span>
-                            <?= number_format($avisMoyenne, 1) ?>/5 · <?= count($avisListe) ?> avis
-                        </p>
-                    <?php endif; ?>
-
-                    <p><?= htmlspecialchars($produit['description']) ?></p>
-
-                    <?php if (!empty($produit['tailles'])): ?>
-                        <div class="taille-selecteur">
-                            <span class="taille-label">Taille</span>
-                            <div class="taille-options">
-                                <?php foreach ($produit['tailles'] as $i => $taille): ?>
-                                    <label class="taille-pill">
-                                        <input type="radio" name="taille" value="<?= htmlspecialchars($taille) ?>" <?= $i === 0 ? 'checked' : '' ?>>
-                                        <span><?= htmlspecialchars($taille) ?></span>
-                                    </label>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (estConnecte()): ?>
-                        <form method="post" action="favoris-toggle.php">
-                            <?= csrfChamp() ?>
-                            <input type="hidden" name="produit_id" value="<?= $id ?>">
-                            <input type="hidden" name="retour" value="produit.php?id=<?= $id ?>">
-                            <button type="submit" class="btn btn-outline">
-                                <?= $estFavori ? '★ Retirer des favoris' : '☆ Ajouter aux favoris' ?>
-                            </button>
-                        </form>
-                    <?php else: ?>
-                        <p><a href="connexion.php">Connecte-toi</a> pour ajouter ce produit à tes favoris.</p>
-                    <?php endif; ?>
-
-                    <a href="contact.php" class="btn">Nous contacter pour ce produit</a>
+<?php if ($produit): ?>
+    <section class="product-viewer">
+        <div class="product-viewer-gallery">
+            <?php if (!empty($produit['image'])): ?>
+                <div class="product-viewer-image" style="background-image:url('<?= htmlspecialchars($produit['image']) ?>')"></div>
+            <?php else: ?>
+                <div class="product-viewer-image card-image--swatch" style="background-color:<?= htmlspecialchars($produit['couleur'] ?? '#e9e4da') ?>">
+                    <span class="card-image-label"><?= htmlspecialchars($produit['nom']) ?></span>
                 </div>
-            </div>
+            <?php endif; ?>
+        </div>
 
-            <div class="avis-section">
-                <h2>Avis clients</h2>
+        <div class="product-viewer-info">
+            <p class="breadcrumb"><a href="/index.php">Accueil</a> / <a href="/collection.php">Collection</a> / <?= htmlspecialchars($produit['nom']) ?></p>
 
-                <?php if (empty($avisListe)): ?>
-                    <p class="intro">Aucun avis pour le moment — soyez le premier à donner votre avis.</p>
-                <?php else: ?>
-                    <div class="avis-liste">
-                        <?php foreach ($avisListe as $avis): ?>
-                            <div class="avis-item">
-                                <div class="avis-item-header">
-                                    <span class="avis-etoiles" aria-hidden="true"><?= etoiles($avis['note']) ?></span>
-                                    <span class="avis-auteur"><?= htmlspecialchars($avis['nom']) ?></span>
-                                </div>
-                                <p><?= htmlspecialchars($avis['commentaire']) ?></p>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+            <h1><?= htmlspecialchars($produit['nom']) ?></h1>
+            <p class="prix prix-lg"><?= (int)$produit['prix'] ?> €</p>
 
-                <?php if ($avisSuccess): ?>
-                    <p class="alert alert-success">Merci, votre avis a bien été publié.</p>
-                <?php elseif (!empty($avisErrors)): ?>
-                    <div class="alert alert-error">
-                        <?php foreach ($avisErrors as $erreur): ?>
-                            <p><?= htmlspecialchars($erreur) ?></p>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+            <?php if ($avisMoyenne !== null): ?>
+                <p class="avis-resume">
+                    <span class="avis-etoiles" aria-hidden="true"><?= etoiles($avisMoyenne) ?></span>
+                    <?= number_format($avisMoyenne, 1) ?>/5 · <?= count($avisListe) ?> avis
+                </p>
+            <?php endif; ?>
 
-                <form method="post" class="avis-form">
-                    <?= csrfChamp() ?>
-                    <input type="hidden" name="action" value="ajouter_avis">
+            <p class="product-viewer-desc"><?= htmlspecialchars($produit['description']) ?></p>
 
-                    <label for="avis_nom">Nom</label>
-                    <input type="text" id="avis_nom" name="avis_nom" value="<?= htmlspecialchars($_POST['avis_nom'] ?? (estConnecte() ? utilisateurConnecte()['nom'] : '')) ?>" required>
-
-                    <span class="taille-label">Note</span>
-                    <div class="avis-note-picker">
-                        <?php for ($n = 5; $n >= 1; $n--): ?>
-                            <label>
-                                <input type="radio" name="avis_note" value="<?= $n ?>" <?= $n == 5 ? 'checked' : '' ?>>
-                                <span><?= $n ?> ★</span>
+            <?php if (!empty($produit['tailles'])): ?>
+                <div class="taille-selecteur">
+                    <span class="taille-label">Taille</span>
+                    <div class="taille-options">
+                        <?php foreach ($produit['tailles'] as $i => $taille): ?>
+                            <label class="taille-pill">
+                                <input type="radio" name="taille" value="<?= htmlspecialchars($taille) ?>" <?= $i === 0 ? 'checked' : '' ?>>
+                                <span><?= htmlspecialchars($taille) ?></span>
                             </label>
-                        <?php endfor; ?>
+                        <?php endforeach; ?>
                     </div>
+                </div>
+            <?php endif; ?>
 
-                    <label for="avis_commentaire">Commentaire</label>
-                    <textarea id="avis_commentaire" name="avis_commentaire" rows="4" required><?= htmlspecialchars($_POST['avis_commentaire'] ?? '') ?></textarea>
+            <div class="product-viewer-actions">
+                <?php if (estConnecte()): ?>
+                    <form method="post" action="favoris-toggle.php">
+                        <?= csrfChamp() ?>
+                        <input type="hidden" name="produit_id" value="<?= $id ?>">
+                        <input type="hidden" name="retour" value="produit.php?id=<?= $id ?>">
+                        <button type="submit" class="btn btn-outline">
+                            <?= $estFavori ? '★ Retirer des favoris' : '☆ Ajouter aux favoris' ?>
+                        </button>
+                    </form>
+                <?php else: ?>
+                    <p><a href="connexion.php" class="link-underline">Connecte-toi</a> pour ajouter ce produit à tes favoris.</p>
+                <?php endif; ?>
 
-                    <button type="submit" class="btn btn-outline">Publier mon avis</button>
-                </form>
+                <a href="contact.php" class="btn">Nous contacter pour ce produit</a>
             </div>
-        <?php else: ?>
+
+            <ul class="product-viewer-meta">
+                <li>Fabriqué en France, en petite série</li>
+                <li>Livraison offerte dès 120 €</li>
+                <li>Retours gratuits sous 30 jours</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section avis-section">
+        <div class="container narrow">
+            <h2>Avis clients</h2>
+
+            <?php if (empty($avisListe)): ?>
+                <p class="intro">Aucun avis pour le moment — soyez le premier à donner votre avis.</p>
+            <?php else: ?>
+                <div class="avis-liste">
+                    <?php foreach ($avisListe as $avis): ?>
+                        <div class="avis-item">
+                            <div class="avis-item-header">
+                                <span class="avis-etoiles" aria-hidden="true"><?= etoiles($avis['note']) ?></span>
+                                <span class="avis-auteur"><?= htmlspecialchars($avis['nom']) ?></span>
+                            </div>
+                            <p><?= htmlspecialchars($avis['commentaire']) ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($avisSuccess): ?>
+                <p class="alert alert-success">Merci, votre avis a bien été publié.</p>
+            <?php elseif (!empty($avisErrors)): ?>
+                <div class="alert alert-error">
+                    <?php foreach ($avisErrors as $erreur): ?>
+                        <p><?= htmlspecialchars($erreur) ?></p>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
+            <form method="post" class="avis-form">
+                <?= csrfChamp() ?>
+                <input type="hidden" name="action" value="ajouter_avis">
+
+                <label for="avis_nom">Nom</label>
+                <input type="text" id="avis_nom" name="avis_nom" value="<?= htmlspecialchars($_POST['avis_nom'] ?? (estConnecte() ? utilisateurConnecte()['nom'] : '')) ?>" required>
+
+                <span class="taille-label">Note</span>
+                <div class="avis-note-picker">
+                    <?php for ($n = 5; $n >= 1; $n--): ?>
+                        <label>
+                            <input type="radio" name="avis_note" value="<?= $n ?>" <?= $n == 5 ? 'checked' : '' ?>>
+                            <span><?= $n ?> ★</span>
+                        </label>
+                    <?php endfor; ?>
+                </div>
+
+                <label for="avis_commentaire">Commentaire</label>
+                <textarea id="avis_commentaire" name="avis_commentaire" rows="4" required><?= htmlspecialchars($_POST['avis_commentaire'] ?? '') ?></textarea>
+
+                <button type="submit" class="btn btn-outline">Publier mon avis</button>
+            </form>
+        </div>
+    </section>
+<?php else: ?>
+    <section class="section">
+        <div class="container">
             <h1>Produit introuvable</h1>
             <p>Ce produit n'existe pas ou a été retiré de la collection.</p>
             <a href="collection.php" class="btn btn-outline">Retour à la collection</a>
-        <?php endif; ?>
-    </div>
-</section>
+        </div>
+    </section>
+<?php endif; ?>
 
 <?php include 'includes/footer.php'; ?>
