@@ -83,7 +83,7 @@
         <p class="copyright">&copy; <?= date('Y') ?> Lylium — Tous droits réservés.</p>
         <div class="footer-legal">
             <a href="/mentions-legales.php">Mentions légales</a>
-            <a href="#">CGV</a>
+            <a href="/cgv.php">CGV</a>
             <a href="#">Confidentialité</a>
         </div>
     </div>
