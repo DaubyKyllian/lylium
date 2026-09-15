@@ -36,31 +36,10 @@ include 'includes/produits-data.php';
         <h1 class="hero-title">Un emblème<br>Une histoire<br><em>Réécrite</em></h1>
 
         <div class="hero-bottom-row">
-            <p class="hero-lede">Lin, laine mérinos et coton peigné, façonnés en petites séries par des ateliers que nous connaissons — pour des pièces qui traversent les saisons, pas les tendances.</p>
             <a href="/collection.php" class="btn hero-btn">Découvrir la collection</a>
         </div>
     </div>
 
-    <div class="hero-ticker" aria-hidden="true">
-        <div class="hero-ticker-track">
-            <span class="hero-ticker-set">
-                <span>Fabriqué en France</span><span>✦</span>
-                <span>Matières nobles</span><span>✦</span>
-                <span>Éditions limitées</span><span>✦</span>
-                <span>Fabriqué en France</span><span>✦</span>
-                <span>Matières nobles</span><span>✦</span>
-                <span>Éditions limitées</span><span>✦</span>
-            </span>
-            <span class="hero-ticker-set">
-                <span>Fabriqué en France</span><span>✦</span>
-                <span>Matières nobles</span><span>✦</span>
-                <span>Éditions limitées</span><span>✦</span>
-                <span>Fabriqué en France</span><span>✦</span>
-                <span>Matières nobles</span><span>✦</span>
-                <span>Éditions limitées</span><span>✦</span>
-            </span>
-        </div>
-    </div>
     <span class="hero-scroll-hint" id="heroScrollHint">Faites défiler ↓</span>
 </section>
 
