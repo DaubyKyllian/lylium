@@ -29,7 +29,6 @@ include 'includes/produits-data.php';
 
     <div class="hero-frame container">
         <div class="hero-top-row">
-            <span class="eyebrow eyebrow--light">Collection permanente</span>
             <span class="hero-ref">Lylium — depuis toujours</span>
         </div>
 
