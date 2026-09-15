@@ -28,10 +28,6 @@ include 'includes/produits-data.php';
     <div class="grain-overlay" aria-hidden="true"></div>
 
     <div class="hero-frame container">
-        <div class="hero-top-row">
-            <span class="hero-ref">Lylium — depuis toujours</span>
-        </div>
-
         <h1 class="hero-title">LYLIUM</h1>
         <p class="hero-subtitle">Un emblème<br>Une histoire<br><em>Réécrite</em></p>
 
