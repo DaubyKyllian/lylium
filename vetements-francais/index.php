@@ -40,6 +40,26 @@ include 'includes/produits-data.php';
         </div>
     </div>
 
+    <div class="hero-ticker" aria-hidden="true">
+        <div class="hero-ticker-track">
+            <span class="hero-ticker-set">
+                <span>Fabriqué en France</span><span>✦</span>
+                <span>Matières nobles</span><span>✦</span>
+                <span>Éditions limitées</span><span>✦</span>
+                <span>Fabriqué en France</span><span>✦</span>
+                <span>Matières nobles</span><span>✦</span>
+                <span>Éditions limitées</span><span>✦</span>
+            </span>
+            <span class="hero-ticker-set">
+                <span>Fabriqué en France</span><span>✦</span>
+                <span>Matières nobles</span><span>✦</span>
+                <span>Éditions limitées</span><span>✦</span>
+                <span>Fabriqué en France</span><span>✦</span>
+                <span>Matières nobles</span><span>✦</span>
+                <span>Éditions limitées</span><span>✦</span>
+            </span>
+        </div>
+    </div>
     <span class="hero-scroll-hint" id="heroScrollHint">Faites défiler ↓</span>
 </section>
 
