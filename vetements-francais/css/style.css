@@ -264,17 +264,37 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
 [data-theme="dark"] .icon-sun { opacity: 0; transform: rotate(60deg) scale(.6); }
 [data-theme="dark"] .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
 
-.nav-toggle { display: none; background: none; border: 0; font-size: 1.4rem; cursor: pointer; }
+.nav-toggle {
+    display: none; align-items: center; justify-content: center;
+    width: 44px; height: 44px; background: none; border: 0; font-size: 1.4rem; cursor: pointer;
+}
 
 @media (max-width: 900px) {
     .category-nav { display: none; }
-    .main-nav { position: fixed; inset: var(--header-h) 0 auto 0; flex-direction: column; align-items: flex-start;
-        gap: var(--space-2); padding: var(--space-4); background: var(--paper); border-bottom: 1px solid var(--line);
+    /* .site-header est position:fixed : ancrer le panneau en absolute
+       dessus le place toujours juste sous le header réellement affiché
+       (bandeau d'annonce compris), plutôt qu'à un décalage fixe en pixels
+       qui ne tenait pas compte du bandeau encore visible en haut de page. */
+    .main-nav { position: absolute; inset: 100% 0 auto 0; flex-direction: column; align-items: stretch;
+        gap: 0; padding: var(--space-2) var(--space-4) var(--space-4); background: var(--paper); border-bottom: 1px solid var(--line);
+        max-height: 80vh; overflow-y: auto;
         transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
     .main-nav.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .nav-toggle { display: block; color: inherit; }
+    .main-nav a:not(.icon-link) { padding: .8em 0; border-bottom: 1px solid var(--line-soft); font-size: 1.05rem; }
+    .main-nav .icon-link { width: 44px; height: 44px; }
+    .nav-toggle { display: flex; color: inherit; }
     .site-header:not(.scrolled) .nav-toggle { color: var(--stable-pale); }
     .top-bar-track { font-size: .64rem; gap: .8em; }
+}
+@media (max-width: 480px) {
+    .top-bar-track span:not(:first-child) { display: none; }
+}
+@media (max-width: 640px) {
+    /* Header plus compact sur mobile : moins d'espace "mort" reservé en
+       haut de chaque page. --header-h pilote aussi le padding-top du hero,
+       des bannieres de page, de la fiche produit... tout suit automatiquement. */
+    :root { --header-h: 72px; }
+    .logo { font-size: 1.25rem; }
 }
 
 /* ==========================================================================
@@ -451,6 +471,11 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
 }
 .quote-mark { font-family: var(--font-serif); font-size: 5.5rem; line-height: 1; color: var(--gold); opacity: .7; }
 .quote-band-text { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.35; margin-top: -1.6rem; }
+@media (max-width: 560px) {
+    .quote-band-inner { padding: var(--space-6) var(--space-4); }
+    .quote-mark { font-size: 4rem; }
+    .quote-band-text { margin-top: -1.1rem; }
+}
 
 /* ==========================================================================
    Bannières de page (catégories, marque, compte, légal…)
@@ -519,10 +544,15 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
 .catalogue-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4) var(--space-3); perspective: 1400px; }
 .catalogue-grid--compact { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 1100px) { .catalogue-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 760px) { .catalogue-grid, .catalogue-grid--compact { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .catalogue-grid, .catalogue-grid--compact { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .catalogue-grid, .catalogue-grid--compact { grid-template-columns: repeat(2, 1fr); gap: var(--space-3) var(--space-2); } }
+@media (max-width: 340px) { .catalogue-grid, .catalogue-grid--compact { grid-template-columns: 1fr; } }
 
 .category-toolbar, .collection-toolbar { display: flex; flex-wrap: wrap; align-items: end; gap: var(--space-3); margin: var(--space-4) 0; }
+@media (max-width: 560px) {
+    .collection-toolbar { flex-direction: column; align-items: stretch; }
+    .toolbar-field, .toolbar-field select { width: 100%; }
+    .collection-toolbar .btn { width: 100%; }
+}
 .collection-toolbar { padding: var(--space-3); background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-md); }
 .toolbar-field { display: flex; flex-direction: column; gap: .35em; }
 .toolbar-field label { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-50); }
@@ -579,8 +609,8 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
 .avis-auteur { font-weight: 600; }
 .avis-form { display: grid; gap: var(--space-2); max-width: 560px; margin-top: var(--space-4); }
 .avis-form label { font-size: .82rem; font-weight: 600; color: var(--ink-70); }
-.avis-note-picker { display: flex; gap: 1em; flex-wrap: wrap; }
-.avis-note-picker label { display: flex; align-items: center; gap: .4em; cursor: pointer; font-weight: 400; }
+.avis-note-picker { display: flex; gap: .25em; flex-wrap: wrap; }
+.avis-note-picker label { display: flex; align-items: center; gap: .4em; cursor: pointer; font-weight: 400; padding: .5em .6em; }
 
 @media (max-width: 900px) {
     .product-viewer { grid-template-columns: 1fr; }
@@ -646,7 +676,7 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
 .account-hero-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-2); }
 .account-logout-link { font-size: .82rem; border-bottom: 1px solid rgba(246, 240, 228, .4); color: rgba(246, 240, 228, .85); }
 .account-logout-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
-.account-tabs { display: flex; gap: var(--space-4); margin-top: var(--space-4); flex-wrap: wrap; }
+.account-tabs { display: flex; gap: var(--space-3) var(--space-4); margin-top: var(--space-4); flex-wrap: wrap; }
 .account-tabs a, .account-tab-disabled { font-size: .9rem; padding-bottom: .5em; border-bottom: 2px solid transparent; color: rgba(246, 240, 228, .65); }
 .account-tabs a:hover { color: var(--stable-pale); }
 .account-tabs a.active { color: var(--gold-light); border-color: var(--gold-light); }
@@ -703,6 +733,11 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
 }
 .newsletter-form input::placeholder { color: rgba(246, 240, 228, .5); }
 .newsletter-form input:focus { outline: none; border-color: var(--gold); }
+@media (max-width: 560px) {
+    .newsletter-form { flex-direction: column; align-items: stretch; width: 100%; }
+    .newsletter-form input { min-width: 0; width: 100%; }
+    .newsletter-form .btn { width: 100%; }
+}
 
 /* ==========================================================================
    Footer

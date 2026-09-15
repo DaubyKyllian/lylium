@@ -25,7 +25,7 @@
             <a href="categorie/enfant.php" class="<?= ($navActive ?? '') === 'enfant' ? 'active' : '' ?>">Enfant</a>
         </div>
 
-        <div class="main-nav">
+        <div class="main-nav" id="mainNav">
             <a href="collection.php" class="<?= ($navActive ?? '') === 'collection' ? 'active' : '' ?>">Collection</a>
             <a href="marque.php" class="<?= ($navActive ?? '') === 'marque' ? 'active' : '' ?>">La marque</a>
             <a href="recherche.php" class="icon-link" aria-label="Recherche">
@@ -74,7 +74,7 @@
 
 
 
-        <button class="nav-toggle">
+        <button type="button" class="nav-toggle" aria-label="Menu" aria-controls="mainNav">
             ☰
         </button>
 
