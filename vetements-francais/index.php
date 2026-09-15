@@ -32,7 +32,8 @@ include 'includes/produits-data.php';
             <span class="hero-ref">Lylium — depuis toujours</span>
         </div>
 
-        <h1 class="hero-title">Un emblème<br>Une histoire<br><em>Réécrite</em></h1>
+        <h1 class="hero-title">LYLIUM</h1>
+        <p class="hero-subtitle">Un emblème<br>Une histoire<br><em>Réécrite</em></p>
 
         <div class="hero-bottom-row">
             <a href="/collection.php" class="btn hero-btn">Découvrir la collection</a>
