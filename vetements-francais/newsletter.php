@@ -1,6 +1,7 @@
 <?php
 require 'includes/session.php';
 require 'includes/db.php';
+require 'includes/mail.php';
 
 $email = trim($_POST['email'] ?? '');
 $retour = $_POST['retour'] ?? '/index.php';
@@ -22,10 +23,9 @@ if (csrfVerifie($_POST['csrf_token'] ?? null) && filter_var($email, FILTER_VALID
     }
     $statut = 'ok';
 
-    $configPath = __DIR__ . '/includes/mail-config.php';
-    if (file_exists($configPath)) {
+    $config = mailConfig();
+    if ($config !== null) {
         require __DIR__ . '/vendor/autoload.php';
-        $config = require $configPath;
         try {
             $mail = new PHPMailer\PHPMailer\PHPMailer(true);
             $mail->isSMTP();

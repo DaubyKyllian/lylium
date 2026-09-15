@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 require 'includes/session.php';
+require 'includes/mail.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
@@ -20,14 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Email invalide.";
     if ($message === '') $errors[] = "Le message ne peut pas être vide.";
 
-    $configPath = __DIR__ . '/includes/mail-config.php';
-    if (empty($errors) && !file_exists($configPath)) {
-        $errors[] = "L'envoi d'email n'est pas encore configuré (includes/mail-config.php manquant).";
+    $config = mailConfig();
+    if (empty($errors) && $config === null) {
+        $errors[] = "L'envoi d'email n'est pas encore configuré (variables SMTP manquantes).";
     }
 
     if (empty($errors)) {
-        $config = require $configPath;
-
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
