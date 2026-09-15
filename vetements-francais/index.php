@@ -33,7 +33,7 @@ include 'includes/produits-data.php';
             <span class="hero-ref">Lylium — depuis toujours</span>
         </div>
 
-        <h1 class="hero-title">L'élégance<br>tissée en<br><em>France</em></h1>
+        <h1 class="hero-title">Nous n'héritons pas de l'histoire,<br>nous <em>l'écrivons</em></h1>
 
         <div class="hero-bottom-row">
             <p class="hero-lede">Lin, laine mérinos et coton peigné, façonnés en petites séries par des ateliers que nous connaissons — pour des pièces qui traversent les saisons, pas les tendances.</p>
