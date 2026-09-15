@@ -83,6 +83,7 @@ include 'includes/navbar.php';
         <p>Conformément à la réglementation applicable, le consommateur dispose, en principe, d'un délai de quatorze (14) jours à compter de la réception du produit pour exercer son droit de rétractation.</p>
         <p>Le client peut exercer ce droit en contactant LYLIUM par écrit, notamment par e-mail, ou en utilisant le formulaire de rétractation disponible sur le site.</p>
         <p>Le client doit ensuite retourner le produit dans les conditions et délais prévus par la réglementation applicable.</p>
+        <p>Un <a href="/retractation.php" class="link-underline">formulaire de rétractation</a> est mis à disposition à cet effet.</p>
 
         <h2>11. Conditions de retour</h2>
         <p>Les produits retournés doivent être manipulés avec soin.</p>
