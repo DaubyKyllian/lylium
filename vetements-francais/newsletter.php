@@ -36,6 +36,8 @@ if (csrfVerifie($_POST['csrf_token'] ?? null) && filter_var($email, FILTER_VALID
             $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = $config['smtp_port'];
             $mail->CharSet = 'UTF-8';
+            $mail->Timeout = 10;
+            $mail->SMTPKeepAlive = false;
             $mail->setFrom($config['from_email'], $config['from_name']);
             $mail->addAddress($email);
             $mail->Subject = "Bienvenue chez Lylium";

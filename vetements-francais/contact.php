@@ -38,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = $config['smtp_port'];
             $mail->CharSet = 'UTF-8';
+            $mail->Timeout = 10; // sans ça, PHPMailer attend jusqu'à 5 min (SMTP bloqué/injoignable) avant d'échouer
+            $mail->SMTPKeepAlive = false;
 
             $mail->setFrom($config['from_email'], $config['from_name']);
             $mail->addAddress($config['to_email']);
