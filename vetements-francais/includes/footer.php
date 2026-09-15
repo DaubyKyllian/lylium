@@ -84,6 +84,7 @@
         <div class="footer-legal">
             <a href="/mentions-legales.php">Mentions légales</a>
             <a href="/cgv.php">CGV</a>
+            <a href="/politique-livraison-retours.php">Livraison &amp; retours</a>
             <a href="/confidentialite.php">Confidentialité</a>
         </div>
     </div>

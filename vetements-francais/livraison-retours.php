@@ -49,6 +49,7 @@ $faq = [
 
         <p class="faq-contact">
             Une autre question ? <a href="/contact.php" class="link-underline">Contactez-nous</a>.
+            Vous pouvez aussi consulter notre <a href="/politique-livraison-retours.php" class="link-underline">politique complète de livraison, retours et remboursements</a>.
         </p>
     </div>
 </section>
