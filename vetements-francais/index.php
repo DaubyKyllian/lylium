@@ -141,7 +141,7 @@ include 'includes/produits-data.php';
     <div class="grain-overlay" aria-hidden="true"></div>
     <div class="quote-band-inner">
         <span class="quote-mark reveal-image reveal" aria-hidden="true">&ldquo;</span>
-        <p class="quote-band-text reveal" style="--reveal-delay:0.1s">La mode passe, le style reste.</p>
+        <p class="quote-band-text reveal" style="--reveal-delay:0.1s">L'élégance ne se réinvente pas, elle se réécrit.</p>
         <a href="/lookbook.php" class="btn hero-btn reveal" style="--reveal-delay:0.2s">Découvrir le lookbook</a>
     </div>
 </section>
