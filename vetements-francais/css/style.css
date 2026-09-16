@@ -329,7 +329,12 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
    jamais dessous, même sur les écrans bas. Fond statique, sans animation.
    ========================================================================== */
 .hero {
-    position: relative; min-height: 100svh; display: flex; align-items: flex-end;
+    /* Hauteur plafonnée entre 640px et 880px sur desktop : sans ces bornes,
+       100svh seul fait varier fortement la hauteur (et donc la position du
+       contenu, ancré en bas) selon le ratio d'écran — un Mac 16:10 rend le
+       hero nettement plus haut, donc le logo plus bas, qu'un PC 16:9 à
+       largeur de fenêtre égale. Restauré en plein écran sur mobile ci-dessous. */
+    position: relative; height: clamp(640px, 100svh, 880px); display: flex; align-items: flex-end;
     padding-top: calc(var(--header-h) + var(--topbar-h) + var(--space-4));
     background-image:
         radial-gradient(120% 90% at 18% 0%, rgba(42, 32, 22, .8) 0%, rgba(26, 21, 18, .8) 55%),
@@ -382,6 +387,7 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
     .hero-frame { max-width: none; }
 }
 @media (max-width: 760px) {
+    .hero { height: auto; min-height: 100svh; }
     .hero-frame { padding-bottom: 170px; gap: var(--space-2); }
     .hero-bottom-row .btn { width: 100%; justify-content: center; }
     .hero-scroll-hint { display: none; }
