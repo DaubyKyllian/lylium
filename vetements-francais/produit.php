@@ -51,6 +51,22 @@ if ($produit) {
     }
 }
 
+$similaires = [];
+if ($produit) {
+    $similaires = array_filter($produits, function ($p, $pid) use ($id, $produit) {
+        return $pid !== $id && $p['categorie'] === $produit['categorie'];
+    }, ARRAY_FILTER_USE_BOTH);
+
+    if (count($similaires) < 4) {
+        foreach ($produits as $pid => $p) {
+            if (count($similaires) >= 4) break;
+            if ($pid !== $id && !array_key_exists($pid, $similaires)) $similaires[$pid] = $p;
+        }
+    }
+
+    $similaires = array_slice($similaires, 0, 4, true);
+}
+
 function etoiles($note) {
     $pleines = round($note);
     return str_repeat('★', (int)$pleines) . str_repeat('☆', 5 - (int)$pleines);
@@ -79,6 +95,15 @@ function etoiles($note) {
                 <p class="avis-resume">
                     <span class="avis-etoiles" aria-hidden="true"><?= etoiles($avisMoyenne) ?></span>
                     <?= number_format($avisMoyenne, 1) ?>/5 · <?= count($avisListe) ?> avis
+                </p>
+            <?php endif; ?>
+
+            <?php if (($produit['stock'] ?? null) === 0): ?>
+                <p class="stock-epuise">Rupture de stock temporaire</p>
+            <?php elseif (($produit['stock'] ?? 99) <= 5): ?>
+                <p class="stock-urgence">
+                    <span class="stock-urgence-dot" aria-hidden="true"></span>
+                    Plus que <?= (int)$produit['stock'] ?> exemplaire<?= $produit['stock'] > 1 ? 's' : '' ?> en stock
                 </p>
             <?php endif; ?>
 
@@ -177,6 +202,26 @@ function etoiles($note) {
             </form>
         </div>
     </section>
+
+    <?php if (!empty($similaires)): ?>
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <span class="eyebrow">À découvrir aussi</span>
+                        <h2>Articles similaires</h2>
+                    </div>
+                    <a href="/collection.php?categorie=<?= urlencode($produit['categorie']) ?>" class="link-underline">Voir toute la catégorie</a>
+                </div>
+
+                <div class="catalogue-grid">
+                    <?php foreach ($similaires as $id => $produit): ?>
+                        <?php include 'includes/produit-card.php'; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
 <?php else: ?>
     <section class="section">
         <div class="container">
