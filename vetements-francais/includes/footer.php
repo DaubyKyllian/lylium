@@ -92,5 +92,6 @@
 </footer>
 
 <script src="/js/app.js" defer></script>
+<script src="/js/chatbot.js" defer></script>
 </body>
 </html>
