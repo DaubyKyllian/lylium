@@ -17,6 +17,9 @@
             <span class="card-image-label"><?= htmlspecialchars($produit['nom']) ?></span>
         </div>
     <?php endif; ?>
+    <?php if (($produit['stock'] ?? 99) <= 5): ?>
+        <span class="card-stock-badge"><?= $produit['stock'] > 0 ? 'Plus que ' . (int)$produit['stock'] : 'Épuisé' ?></span>
+    <?php endif; ?>
     <h3><?= htmlspecialchars($produit['nom']) ?></h3>
     <p class="prix"><?= (int)$produit['prix'] ?> €</p>
 </a>

@@ -98,6 +98,15 @@ function etoiles($note) {
                 </p>
             <?php endif; ?>
 
+            <?php if (($produit['stock'] ?? null) === 0): ?>
+                <p class="stock-epuise">Rupture de stock temporaire</p>
+            <?php elseif (($produit['stock'] ?? 99) <= 5): ?>
+                <p class="stock-urgence">
+                    <span class="stock-urgence-dot" aria-hidden="true"></span>
+                    Plus que <?= (int)$produit['stock'] ?> exemplaire<?= $produit['stock'] > 1 ? 's' : '' ?> en stock
+                </p>
+            <?php endif; ?>
+
             <p class="product-viewer-desc"><?= htmlspecialchars($produit['description']) ?></p>
 
             <?php if (!empty($produit['tailles'])): ?>
