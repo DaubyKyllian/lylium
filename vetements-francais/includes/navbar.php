@@ -15,14 +15,16 @@
 
     <nav class="navbar">
 
-        <a href="index.php" class="logo">
-            LYLIUM
-        </a>
+        <div class="navbar-left">
+            <a href="index.php" class="logo">
+                LYLIUM
+            </a>
 
-        <div class="category-nav">
-            <a href="categorie/homme.php" class="<?= ($navActive ?? '') === 'homme' ? 'active' : '' ?>">Homme</a>
-            <a href="categorie/femme.php" class="<?= ($navActive ?? '') === 'femme' ? 'active' : '' ?>">Femme</a>
-            <a href="categorie/enfant.php" class="<?= ($navActive ?? '') === 'enfant' ? 'active' : '' ?>">Enfant</a>
+            <div class="category-nav">
+                <a href="categorie/homme.php" class="<?= ($navActive ?? '') === 'homme' ? 'active' : '' ?>">Homme</a>
+                <a href="categorie/femme.php" class="<?= ($navActive ?? '') === 'femme' ? 'active' : '' ?>">Femme</a>
+                <a href="categorie/enfant.php" class="<?= ($navActive ?? '') === 'enfant' ? 'active' : '' ?>">Enfant</a>
+            </div>
         </div>
 
         <div class="main-nav" id="mainNav">
