@@ -17,10 +17,9 @@ if ($q !== '') {
 }
 ?>
 
-<section class="page-banner page-banner--dark">
-    <div class="grain-overlay" aria-hidden="true"></div>
+<section class="page-banner">
     <div class="container page-banner-inner">
-        <span class="eyebrow eyebrow--light">Recherche</span>
+        <span class="eyebrow">Recherche</span>
         <h1>Que cherchez-vous ?</h1>
         <form method="get" class="search-form">
             <input type="search" name="q" value="<?= htmlspecialchars($q) ?>" placeholder="Un nom, une matière, une couleur…" autofocus>
