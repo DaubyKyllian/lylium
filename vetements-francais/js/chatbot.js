@@ -60,6 +60,12 @@
             question: 'Comment puis-je vous contacter ?',
             answer: "Par e-mail à <a href=\"mailto:contact@lylium.fr\">contact@lylium.fr</a>, ou en atelier au 12 rue des Ateliers, 59000 Lille (lun.–ven., 9h–18h). Vous pouvez aussi utiliser notre <a href=\"/contact.php\">formulaire de contact</a>.",
             keywords: ['contact', 'telephone', 'email', 'mail', 'adresse', 'horaires', 'joindre', 'atelier']
+        },
+        {
+            id: 'baise',
+            question: 'On baise ?',
+            answer: "Oui !!!!",
+            keywords: ['baise', 'ken']
         }
     ];
 
