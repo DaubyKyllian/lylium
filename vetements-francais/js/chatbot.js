@@ -157,9 +157,13 @@
             return bubble;
         }
 
+        var VISIBLE_CHIP_IDS = ['livraison', 'retour', 'paiement'];
+
         function renderChips(includeAll) {
             chipsEl.innerHTML = '';
-            FAQ_ITEMS.forEach(function (item) {
+            FAQ_ITEMS.filter(function (item) {
+                return VISIBLE_CHIP_IDS.indexOf(item.id) !== -1;
+            }).forEach(function (item) {
                 var chip = document.createElement('button');
                 chip.type = 'button';
                 chip.className = 'chatbot-chip';
