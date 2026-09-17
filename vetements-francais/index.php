@@ -29,7 +29,7 @@ include 'includes/produits-data.php';
 
     <div class="hero-frame container">
         <h1 class="hero-title">LYLIUM</h1>
-        <p class="hero-subtitle">Un emblème<br>Une histoire<br><em>Réécrite</em></p>
+        <p class="hero-subtitle">Un emblème · Une histoire · <em>Réécrite</em></p>
 
         <div class="hero-bottom-row">
             <a href="/collection.php" class="btn hero-btn">Découvrir la collection</a>
