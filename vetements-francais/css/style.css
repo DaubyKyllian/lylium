@@ -495,10 +495,13 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
    ========================================================================== */
 .page-banner { position: relative; padding-top: calc(var(--header-h) + var(--space-6)); padding-bottom: var(--space-6); background: var(--cream-alt); }
 /* Pas de max-width propre : herite de .container (meme max-width,
-   meme padding, meme margin:auto que .navbar). Le meme decalage que
-   .navbar-left .logo (-.5rem) aligne le bord gauche exactement sur le
-   debut du mot "LYLIUM". */
-.page-banner-inner { position: relative; z-index: 2; margin-left: -.5rem; }
+   meme padding, meme margin:auto que .navbar) pour rester centre de
+   la meme facon a toutes les largeurs. Un margin-left negatif ici
+   casserait ce centrage (largeur/marge-droite en auto se recalculent
+   entierement) : on reduit plutot le padding-left du meme montant que
+   le decalage du logo (-.5rem), ce qui glisse le contenu sans toucher
+   au centrage du bloc lui-meme. */
+.page-banner-inner { position: relative; z-index: 2; padding-left: calc(var(--space-4) - .5rem); }
 .page-banner h1 { margin-top: .2em; }
 .page-banner--dark .breadcrumb, .page-banner--dark .breadcrumb a { color: rgba(246, 240, 228, .75); }
 .page-banner--dark .breadcrumb a:hover { color: var(--gold-light); }
