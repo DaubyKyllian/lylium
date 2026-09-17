@@ -25,7 +25,6 @@ try {
             [1, 'Sophie L.', 5, "Chemise en lin superbe, on sent la qualité du tissu français. Je recommande sans hésiter.", '2026-07-14 09:05:00'],
             [1, 'Marc B.', 4, "Très jolie coupe, taille juste — prenez une taille au-dessus si vous hésitez.", '2026-09-01 14:22:00'],
             [3, 'Julie P.', 5, "Le coton est épais et de belle tenue, parfait pour un usage quotidien.", '2026-08-10 11:50:00'],
-            [3, 'Nicolas T.', 3, "Bon pantalon dans l'ensemble, mais la teinte est un peu plus claire que sur les photos.", '2026-08-28 16:10:00'],
             [7, 'Élise M.', 5, "Manteau magnifique et très chaud, la doublure matelassée fait toute la différence en hiver.", '2026-09-05 08:30:00'],
             [9, 'Charlotte V.', 5, "Robe fluide et agréable à porter, coupe flatteuse. Le lin lavé est très doux.", '2026-07-30 13:12:00'],
             [9, 'Hugo F.', 4, "Achetée pour ma femme, elle est ravie. Jolie couleur naturelle qui se marie avec tout.", '2026-09-08 19:05:00'],
