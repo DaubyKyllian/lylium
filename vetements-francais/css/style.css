@@ -227,7 +227,7 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
 }
 .navbar-left { display: flex; align-items: center; gap: var(--space-4); }
 .logo {
-    font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; letter-spacing: .06em;
+    font-family: var(--font-serif); font-size: 2rem; font-weight: 600; letter-spacing: .06em;
     color: var(--ink); transition: opacity var(--dur-fast) var(--ease);
 }
 .navbar-left .logo { margin-left: -.5rem; }
@@ -757,15 +757,23 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
 /* ==========================================================================
    Newsletter
    ========================================================================== */
-.newsletter-band { position: relative; background: var(--stable-dark-2); color: var(--stable-pale); overflow: hidden; }
+.newsletter-band {
+    position: relative; overflow: hidden; color: var(--ink);
+    background: radial-gradient(120% 140% at 15% 0%, #fdf3da 0%, #e6c67f 70%);
+}
+[data-theme="dark"] .newsletter-band { color: var(--stable-pale); background: var(--stable-dark-2); }
+.newsletter-band .hero-btn { border-color: var(--ink-30); color: var(--ink); }
+[data-theme="dark"] .newsletter-band .hero-btn { border-color: rgba(246, 240, 228, .4); color: var(--stable-pale); }
 .newsletter-inner { position: relative; z-index: 2; padding: var(--space-6) var(--space-4); display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: space-between; }
 .newsletter-inner h2 { margin-top: .3em; }
 .newsletter-form { display: flex; gap: var(--space-2); flex-wrap: wrap; }
 .newsletter-form input {
-    background: transparent; border: 1px solid rgba(246, 240, 228, .35); border-radius: var(--radius-pill);
-    padding: .9em 1.3em; color: var(--stable-pale); min-width: 260px; transition: border-color var(--dur-fast) var(--ease);
+    background: transparent; border: 1px solid var(--ink-30); border-radius: var(--radius-pill);
+    padding: .9em 1.3em; color: var(--ink); min-width: 260px; transition: border-color var(--dur-fast) var(--ease);
 }
-.newsletter-form input::placeholder { color: rgba(246, 240, 228, .5); }
+[data-theme="dark"] .newsletter-form input { border-color: rgba(246, 240, 228, .35); color: var(--stable-pale); }
+.newsletter-form input::placeholder { color: var(--ink-50); }
+[data-theme="dark"] .newsletter-form input::placeholder { color: rgba(246, 240, 228, .5); }
 .newsletter-form input:focus { outline: none; border-color: var(--gold); }
 @media (max-width: 560px) {
     .newsletter-form { flex-direction: column; align-items: stretch; width: 100%; }
