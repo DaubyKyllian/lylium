@@ -26,12 +26,11 @@ switch ($tri) {
 }
 ?>
 
-<section class="page-banner page-banner--dark">
-    <div class="grain-overlay" aria-hidden="true"></div>
+<section class="page-banner">
     <div class="container page-banner-inner">
-        <span class="eyebrow eyebrow--light">Toutes nos pièces</span>
+        <span class="eyebrow">Toutes nos pièces</span>
         <h1>La collection</h1>
-        <p class="intro intro--light">Toutes nos pièces, fabriquées en France.</p>
+        <p class="intro">Toutes nos pièces, fabriquées en France.</p>
     </div>
 </section>
 

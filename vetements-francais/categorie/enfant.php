@@ -9,13 +9,12 @@ include '../includes/navbar.php';
 $produitsFiltres = array_filter($produits, fn($p) => $p['categorie'] === 'enfant');
 ?>
 
-<section class="page-banner page-banner--dark">
-    <div class="grain-overlay" aria-hidden="true"></div>
+<section class="page-banner">
     <div class="container page-banner-inner">
-        <p class="breadcrumb breadcrumb--light"><a href="/index.php">Accueil</a> / Enfant</p>
-        <span class="eyebrow eyebrow--light">Collection</span>
+        <p class="breadcrumb"><a href="/index.php">Accueil</a> / Enfant</p>
+        <span class="eyebrow">Collection</span>
         <h1>Enfant</h1>
-        <p class="intro intro--light">La collection enfant, fabriquée en France.</p>
+        <p class="intro">La collection enfant, fabriquée en France.</p>
     </div>
 </section>
 
