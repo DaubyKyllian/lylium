@@ -10,10 +10,10 @@ include 'includes/navbar.php';
 <section class="page-banner">
     <div class="grain-overlay" aria-hidden="true"></div>
     <div class="container page-banner-inner">
-        <p class="breadcrumb breadcrumb--light"><a href="/index.php">Accueil</a> / Lookbook</p>
-        <span class="eyebrow eyebrow--light">Lookbook</span>
+        <p class="breadcrumb"><a href="/index.php">Accueil</a> / Lookbook</p>
+        <span class="eyebrow">Lookbook</span>
         <h1>Silhouettes</h1>
-        <p class="intro intro--light">Quelques pièces, plusieurs façons de les porter — pas de collection capsule,
+        <p class="intro">Quelques pièces, plusieurs façons de les porter — pas de collection capsule,
            juste des vêtements qui s'associent naturellement.</p>
     </div>
 </section>

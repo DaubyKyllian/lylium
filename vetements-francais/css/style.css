@@ -463,7 +463,7 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
    thème sombre. .page-banner--dark reste toujours sombre (bannières
    catégorie, compte...), c'est un composant distinct.
    ========================================================================== */
-.page-banner--dark {
+.page-banner.page-banner--dark {
     position: relative; background: radial-gradient(120% 140% at 15% 0%, var(--stable-dark-1) 0%, var(--stable-dark-2) 60%);
     color: var(--stable-pale); overflow: hidden;
 }

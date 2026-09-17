@@ -8,10 +8,10 @@ include 'includes/navbar.php';
 <section class="page-banner">
     <div class="grain-overlay" aria-hidden="true"></div>
     <div class="container page-banner-inner">
-        <p class="breadcrumb breadcrumb--light"><a href="/index.php">Accueil</a> / La marque</p>
-        <span class="eyebrow eyebrow--light">Notre histoire</span>
+        <p class="breadcrumb"><a href="/index.php">Accueil</a> / La marque</p>
+        <span class="eyebrow">Notre histoire</span>
         <h1>La marque</h1>
-        <p class="intro intro--light">Lylium est né d'une conviction simple : on peut s'habiller avec exigence
+        <p class="intro">Lylium est né d'une conviction simple : on peut s'habiller avec exigence
            sans participer à la surproduction.</p>
     </div>
 </section>
