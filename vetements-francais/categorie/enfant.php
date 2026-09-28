@@ -14,8 +14,8 @@ $produit = $produits[5];
     <div class="container page-banner-inner">
         <p class="breadcrumb"><a href="/index.php">Accueil</a> / Enfant</p>
         <span class="eyebrow">Collection</span>
-        <h1>Enfant</h1>
-        <p class="intro">La collection enfant, fabriquée en France.</p>
+        <h1>Homme</h1>
+        <p class="intro">Notre premier produit. Le début d'une grande histoire.</p>
     </div>
 </section>
 
