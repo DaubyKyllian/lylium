@@ -506,6 +506,17 @@ h3 { font-size: 1.35rem; line-height: 1.3; }
 .page-banner--dark .breadcrumb, .page-banner--dark .breadcrumb a { color: rgba(246, 240, 228, .75); }
 .page-banner--dark .breadcrumb a:hover { color: var(--gold-light); }
 
+/* Page "Homme_drop" (categorie/enfant.php) : image de fond en thème
+   sombre uniquement. Les sections de la page passent transparentes
+   pour laisser voir la photo derrière elles ; le voile assombrit
+   l'image pour garder le texte (déjà clair en thème sombre) lisible. */
+[data-theme="dark"] body.page-enfant {
+    background-image: linear-gradient(rgba(16, 13, 10, .6), rgba(16, 13, 10, .6)), url('/images/2.png');
+    background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;
+}
+[data-theme="dark"] body.page-enfant .page-banner,
+[data-theme="dark"] body.page-enfant .section { background: transparent; }
+
 /* ==========================================================================
    Cartes produit — image, tilt 3D piloté par JS (--rx/--ry/--mx/--my)
    ========================================================================== */

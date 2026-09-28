@@ -3,6 +3,7 @@ require '../includes/produits-data.php';
 
 $pageTitle = "Enfant";
 $navActive = "enfant";
+$bodyClass = "page-enfant";
 include '../includes/header.php';
 include '../includes/navbar.php';
 
