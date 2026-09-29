@@ -9,6 +9,8 @@ include '../includes/navbar.php';
 $produitsFiltres = array_filter($produits, fn($p) => $p['categorie'] === 'femme');
 ?>
 
+<div class="coming-soon-blur">
+
 <section class="page-banner">
     <div class="container page-banner-inner">
         <p class="breadcrumb"><a href="/index.php">Accueil</a> / Femme</p>
@@ -44,3 +46,9 @@ $produitsFiltres = array_filter($produits, fn($p) => $p['categorie'] === 'femme'
 </section>
 
 <?php include '../includes/footer.php'; ?>
+
+</div>
+
+<div class="coming-soon-overlay" aria-hidden="true">
+    <span class="coming-soon-text">Bientôt</span>
+</div>

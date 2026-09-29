@@ -523,6 +523,21 @@ body.page-enfant .section { background: transparent; }
 body.page-enfant .page-banner-inner { padding-left: var(--space-4); text-align: center; }
 body.page-enfant .page-banner-inner .intro { margin-left: auto; margin-right: auto; }
 
+/* Page Femme : contenu flouté sous la navbar, "Bientôt" en overlay net
+   par-dessus. Le flou commence juste sous la navbar (fixed, z-index 200)
+   puisque le wrapper .coming-soon-blur englobe tout ce qui suit. */
+.coming-soon-blur { filter: blur(10px); pointer-events: none; user-select: none; }
+.coming-soon-overlay {
+    position: fixed; inset: 0; z-index: 150;
+    display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--paper) 35%, transparent);
+}
+.coming-soon-text {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(3rem, 9vw, 7rem); letter-spacing: .06em;
+    color: var(--ink);
+}
+
 /* ==========================================================================
    Cartes produit — image, tilt 3D piloté par JS (--rx/--ry/--mx/--my)
    ========================================================================== */
