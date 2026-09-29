@@ -41,8 +41,11 @@ $_SESSION['user_id'] = $userId;
 $_SESSION['user_nom'] = $nom;
 
 // Retour vers la page d'origine (ex. certificat d'authenticité) si fourni et
-// local uniquement, sinon comportement habituel vers le compte.
-$retour = $_GET['retour'] ?? '';
+// local uniquement, sinon comportement habituel vers le compte. Lu depuis la
+// session (voir connexion.php) et non depuis l'URL, pour garder login_uri
+// identique à l'URI de redirection déclarée chez Google.
+$retour = $_SESSION['login_retour'] ?? '';
+unset($_SESSION['login_retour']);
 $retourValide = is_string($retour) && preg_match('#^/(?!/)#', $retour) === 1;
 
 header('Location: ' . ($retourValide ? '..' . $retour : '../mon-compte.php'));

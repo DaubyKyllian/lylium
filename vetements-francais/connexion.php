@@ -4,10 +4,17 @@ include 'includes/header.php';
 include 'includes/navbar.php';
 
 // Retour éventuel vers la page d'origine (ex. certificat d'authenticité) une
-// fois connecté : chemin local uniquement, jamais une URL externe.
+// fois connecté : chemin local uniquement, jamais une URL externe. Stocké en
+// session (et non dans l'URL) car login_uri doit correspondre EXACTEMENT à
+// l'URI de redirection autorisée déclarée dans la Google Cloud Console — un
+// query string dynamique casse cette correspondance et déclenche l'erreur
+// "Accès bloqué : erreur d'autorisation" de Google.
 $retour = $_GET['retour'] ?? '';
 $retourValide = is_string($retour) && preg_match('#^/(?!/)#', $retour) === 1;
-$loginUri = '/auth/google-callback.php' . ($retourValide ? '?retour=' . urlencode($retour) : '');
+if ($retourValide) {
+    $_SESSION['login_retour'] = $retour;
+}
+$loginUri = '/auth/google-callback.php';
 ?>
 
 <section class="split-page">
