@@ -23,7 +23,6 @@
             <div class="category-nav">
                 <a href="categorie/homme.php" class="<?= ($navActive ?? '') === 'homme' ? 'active' : '' ?>">Homme</a>
                 <a href="categorie/femme.php" class="<?= ($navActive ?? '') === 'femme' ? 'active' : '' ?>">Femme</a>
-                <a href="categorie/enfant.php" class="<?= ($navActive ?? '') === 'enfant' ? 'active' : '' ?>">Drop Homme</a>
             </div>
         </div>
 

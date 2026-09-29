@@ -59,7 +59,6 @@
             <span class="footer-col-title">Collection</span>
             <a href="/categorie/homme.php">Homme</a>
             <a href="/categorie/femme.php">Femme</a>
-            <a href="/categorie/enfant.php">Enfant</a>
             <a href="/collection.php">Toute la collection</a>
         </div>
 
