@@ -2,6 +2,12 @@
 $pageTitle = "Connexion";
 include 'includes/header.php';
 include 'includes/navbar.php';
+
+// Retour éventuel vers la page d'origine (ex. certificat d'authenticité) une
+// fois connecté : chemin local uniquement, jamais une URL externe.
+$retour = $_GET['retour'] ?? '';
+$retourValide = is_string($retour) && preg_match('#^/(?!/)#', $retour) === 1;
+$loginUri = '/auth/google-callback.php' . ($retourValide ? '?retour=' . urlencode($retour) : '');
 ?>
 
 <section class="split-page">
@@ -25,7 +31,7 @@ include 'includes/navbar.php';
             <div class="google-btn-wrap">
                 <div id="g_id_onload"
                      data-client_id="719069643955-0tmmeldb5facd0ido72gd5utgivr82rk.apps.googleusercontent.com"
-                     data-login_uri="/auth/google-callback.php"
+                     data-login_uri="<?= htmlspecialchars($loginUri) ?>"
                      data-auto_prompt="false">
                 </div>
                 <div class="g_id_signin"

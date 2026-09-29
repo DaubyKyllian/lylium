@@ -38,6 +38,16 @@ try {
             $stmt->execute($avis);
         }
     }
+
+    // Certificat d'authenticité pilote pour la première pièce numérotée
+    // (produit 5, édition limitée à 3000 exemplaires). Le code est fixé en
+    // dur (pas régénéré à chaque exécution) car c'est lui qui est déjà
+    // encodé dans le QR code imprimé sur la pièce physique : un code
+    // recalculé à chaque redéploiement le rendrait invalide.
+    if ((int)$pdo->query('SELECT COUNT(*) FROM certificats_authenticite')->fetchColumn() === 0) {
+        $stmt = $pdo->prepare('INSERT INTO certificats_authenticite (produit_id, numero_serie, edition_totale, code) VALUES (?, ?, ?, ?)');
+        $stmt->execute([5, 1, 3000, 'e4e8ed7181062bf8c9938402301abbe9']);
+    }
 } catch (PDOException $e) {
     die('Erreur base de données : ' . $e->getMessage());
 }
