@@ -52,3 +52,20 @@ CREATE TABLE IF NOT EXISTS commande_articles (
     prix_unitaire INTEGER NOT NULL,
     FOREIGN KEY (commande_id) REFERENCES commandes(id) ON DELETE CASCADE
 );
+
+-- Certificats d'authenticité (QR code numéroté par pièce). En l'absence de
+-- tunnel de commande, la pièce est associée au compte qui la scanne et se
+-- connecte en premier (plutôt qu'à un vrai user_id de commande) : user_id
+-- reste NULL jusqu'à ce moment-là. Le code est un jeton opaque (pas le
+-- numéro de série) pour qu'on ne puisse pas deviner les autres pièces.
+CREATE TABLE IF NOT EXISTS certificats_authenticite (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    produit_id INTEGER NOT NULL,
+    numero_serie INTEGER NOT NULL,
+    edition_totale INTEGER NOT NULL,
+    code TEXT NOT NULL UNIQUE,
+    user_id INTEGER,
+    date_reclamation TEXT,
+    date_creation TEXT DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);

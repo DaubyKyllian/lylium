@@ -40,5 +40,10 @@ if (!$user) {
 $_SESSION['user_id'] = $userId;
 $_SESSION['user_nom'] = $nom;
 
-header('Location: ../mon-compte.php');
+// Retour vers la page d'origine (ex. certificat d'authenticité) si fourni et
+// local uniquement, sinon comportement habituel vers le compte.
+$retour = $_GET['retour'] ?? '';
+$retourValide = is_string($retour) && preg_match('#^/(?!/)#', $retour) === 1;
+
+header('Location: ' . ($retourValide ? '..' . $retour : '../mon-compte.php'));
 exit;
