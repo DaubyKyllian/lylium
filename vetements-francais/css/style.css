@@ -521,6 +521,7 @@ body.page-enfant {
 body.page-enfant .section { background: transparent; }
 /* Bandeau centré sur la page Homme (pas d'eyebrow, contenu réduit) */
 body.page-enfant .page-banner-inner { padding-left: var(--space-4); text-align: center; }
+body.page-enfant .page-banner-inner .intro { margin-left: auto; margin-right: auto; }
 
 /* ==========================================================================
    Cartes produit — image, tilt 3D piloté par JS (--rx/--ry/--mx/--my)
