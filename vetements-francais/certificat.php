@@ -23,6 +23,7 @@ $appartientAAutrui = false;
 if ($certificat && estConnecte()) {
     $user = utilisateurConnecte();
 
+    
     if ($certificat['user_id'] === null) {
         // Personne ne l'a encore réclamée : en l'absence de tunnel de
         // commande, le premier compte connecté à scanner ce QR code devient

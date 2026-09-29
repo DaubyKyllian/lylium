@@ -15,7 +15,7 @@ $produit = $produits[5];
         <p class="breadcrumb"><a href="/index.php">Accueil</a> / Homme</p>
         <span class="eyebrow">Premier chapitre</span>
         <h1>Homme</h1>
-        <p class="intro">Une seule pièce, en édition très limitée — le début du vestiaire Lylium homme.</p>
+        <p class="intro">Une seule pièce, 3000 exemplaires — le début du vestiaire Lylium homme.</p>
     </div>
 </section>
 
