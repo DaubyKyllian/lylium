@@ -13,7 +13,6 @@ $produit = $produits[5];
 <section class="page-banner">
     <div class="container page-banner-inner">
         <p class="breadcrumb"><a href="/index.php">Accueil</a> / Homme</p>
-        <span class="eyebrow">Collection</span>
         <h1>Homme</h1>
         <p class="intro">Notre premier produit. Le début d'une grande histoire.</p>
     </div>
