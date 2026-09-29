@@ -3,43 +3,33 @@ require '../includes/produits-data.php';
 
 $pageTitle = "Homme";
 $navActive = "homme";
+$bodyClass = "page-enfant";
 include '../includes/header.php';
 include '../includes/navbar.php';
 
-$produitsFiltres = array_filter($produits, fn($p) => $p['categorie'] === 'homme');
+$produit = $produits[5];
 ?>
 
 <section class="page-banner">
     <div class="container page-banner-inner">
-        <p class="breadcrumb"><a href="/index.php">Accueil</a> / Homme</p>
+        <p class="breadcrumb"><a href="/index.php">Accueil</a> / Enfant</p>
         <span class="eyebrow">Collection</span>
         <h1>Homme</h1>
-        <p class="intro">La collection homme, fabriquée en France.</p>
+        <p class="intro">Notre premier produit. Le début d'une grande histoire.</p>
     </div>
 </section>
 
 <section class="section">
     <div class="container">
-
-        <div class="category-toolbar">
-            <p class="category-count">
-                <?= count($produitsFiltres) ?> article<?= count($produitsFiltres) > 1 ? 's' : '' ?>
-            </p>
+        <div class="category-feature-single">
+            <a href="/produit.php?id=5" class="produit-card">
+                <div class="card-image card-image--photo">
+                    <img src="<?= htmlspecialchars($produit['image']) ?>" alt="<?= htmlspecialchars($produit['nom']) ?>" loading="lazy" decoding="async" onload="this.classList.add('is-loaded')">
+                </div>
+                <h3><?= htmlspecialchars($produit['nom']) ?></h3>
+                <p class="prix"><?= (int)$produit['prix'] ?> €</p>
+            </a>
         </div>
-
-        <?php if (empty($produitsFiltres)): ?>
-            <div class="account-empty">
-                <p>Aucun produit dans cette catégorie pour le moment.</p>
-                <a href="/collection.php" class="btn btn-outline">Voir toute la collection</a>
-            </div>
-        <?php else: ?>
-            <div class="catalogue-grid">
-                <?php foreach ($produitsFiltres as $id => $produit): ?>
-                    <?php include '../includes/produit-card.php'; ?>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-
     </div>
 </section>
 

@@ -88,14 +88,7 @@ include 'includes/produits-data.php';
                     <p class="prix"><?= (int)$produits[5]['prix'] ?> €</p>
                 </div>
             </a>
-            <a href="produit.php?id=3" class="feature-tile reveal" style="--reveal-delay:0.1s">
-                <div class="feature-tile-image" style="--img:url('/<?= htmlspecialchars($produits[3]['image']) ?>')"></div>
-                <div class="feature-tile-meta">
-                    <h3><?= htmlspecialchars($produits[3]['nom']) ?></h3>
-                    <p class="prix"><?= (int)$produits[3]['prix'] ?> €</p>
-                </div>
-            </a>
-            <a href="/collection.php" class="feature-tile feature-tile--cta reveal" style="--reveal-delay:0.2s">
+            <a href="/collection.php" class="feature-tile feature-tile--cta reveal" style="--reveal-delay:0.1s">
                 <span class="feature-tile-cta-label">Voir toute<br>la collection</span>
                 <span class="feature-tile-cta-arrow" aria-hidden="true">→</span>
             </a>

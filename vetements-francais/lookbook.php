@@ -20,17 +20,13 @@ include 'includes/navbar.php';
 
 <section class="section">
     <div class="container">
-        <div class="look-diptych">
+        <div class="look-diptych look-diptych--single">
             <a href="produit.php?id=5" class="look-frame reveal reveal-image">
                 <div class="look-image" style="--img:url('/<?= htmlspecialchars($produits[5]['image']) ?>')"></div>
             </a>
-            <a href="produit.php?id=3" class="look-frame reveal reveal-image" style="--reveal-delay:0.12s">
-                <div class="look-image" style="--img:url('/<?= htmlspecialchars($produits[3]['image']) ?>')"></div>
-            </a>
         </div>
         <p class="look-caption reveal" style="--reveal-delay:0.2s">
-            Le vestiaire essentiel — <a href="produit.php?id=5" class="link-underline"><?= htmlspecialchars($produits[5]['nom']) ?></a>
-            porté avec le <a href="produit.php?id=3" class="link-underline"><?= htmlspecialchars($produits[3]['nom']) ?></a>.
+            Le vestiaire essentiel — <a href="produit.php?id=5" class="link-underline"><?= htmlspecialchars($produits[5]['nom']) ?></a>.
         </p>
     </div>
 </section>
