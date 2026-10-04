@@ -74,10 +74,10 @@
     --ink-70: rgba(242, 234, 217, .74);
     --ink-50: rgba(242, 234, 217, .5);
     --ink-30: rgba(242, 234, 217, .3);
-    --cream: #14110d;
-    --cream-alt: #1c1811;
-    --paper: #100d0a;
-    --card: #1e1911;
+    --cream: #121035;
+    --cream-alt: #1a1739;
+    --paper: #0e0c32;
+    --card: #1c1839;
     --gold: #cda65c;
     --gold-light: #e4c988;
     --gold-deep: #a9782e;
@@ -516,7 +516,7 @@ body.page-enfant {
     background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;
 }
 [data-theme="dark"] body.page-enfant {
-    background-image: linear-gradient(rgba(16, 13, 10, .6), rgba(16, 13, 10, .6)), url('/images/2.png');
+    background-image: linear-gradient(rgba(14, 12, 50, .6), rgba(14, 12, 50, .6)), url('/images/2.png');
 }
 body.page-enfant .section { background: transparent; }
 /* Bandeau centré sur la page Homme (pas d'eyebrow, contenu réduit) */
