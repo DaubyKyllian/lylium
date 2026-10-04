@@ -32,7 +32,7 @@ const bagCx = F.x + (F.w + G) / 2, bagBottom = F.y + F.h;
 const tx = CX - bagCx * S, ty = TOP + 22 - bagBottom * S;
 const bag = `<g transform="translate(${tx.toFixed(1)} ${ty.toFixed(1)}) scale(${S})">${bagBody}</g>`;
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+const sceneSvg = (subject, shadow, { ry = 58, reflect = true, top = TOP } = {}) => { const TOP = top; return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
   <defs>${bagDefs}
     <radialGradient id="scene" cx=".5" cy=".42" r=".75">
       <stop offset="0" stop-color="#29247a"/><stop offset=".45" stop-color="${NAVY}"/><stop offset="1" stop-color="#020108"/>
@@ -56,7 +56,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
     <mask id="reflMask" maskUnits="userSpaceOnUse" x="0" y="${TOP}" width="${W}" height="200">
       <rect x="0" y="${TOP + 10}" width="${W}" height="200" fill="url(#reflFade)"/>
     </mask>
-    <clipPath id="topClip"><ellipse cx="${CX}" cy="${TOP}" rx="420" ry="58"/></clipPath>
+    <clipPath id="topClip"><ellipse cx="${CX}" cy="${TOP}" rx="420" ry="${ry}"/></clipPath>
     <filter id="beamBlur" x="-30%" y="-10%" width="160%" height="120%"><feGaussianBlur stdDeviation="34"/></filter>
     <filter id="bokeh"><feGaussianBlur stdDeviation="1.6"/></filter>
     <filter id="bokehBig"><feGaussianBlur stdDeviation="6"/></filter>
@@ -82,31 +82,39 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
   <ellipse cx="${CX}" cy="${H + 12}" rx="500" ry="44" fill="#000" opacity=".7" filter="url(#bokeh)"/>
   <rect x="${CX - 420}" y="${TOP}" width="840" height="${H - TOP + 20}" fill="url(#plinth)"/>
   <rect x="${CX - 420}" y="${TOP}" width="840" height="${H - TOP + 20}" fill="url(#plinthV)"/>
-  <ellipse cx="${CX}" cy="${TOP}" rx="420" ry="58" fill="url(#plinthTop)"/>
+  <ellipse cx="${CX}" cy="${TOP}" rx="420" ry="${ry}" fill="url(#plinthTop)"/>
   <!-- reflet du sac sur le dessus laqué du socle -->
+  ${reflect ? '' : '<!--'}
   <g clip-path="url(#topClip)">
     <g mask="url(#reflMask)" filter="url(#reflBlur)">
-      <g transform="translate(0 ${2 * (TOP + 22)}) scale(1 -1)">${bag}</g>
+      <g transform="translate(0 ${2 * (TOP + 22)}) scale(1 -1)">${subject}</g>
     </g>
   </g>
-  <ellipse cx="${CX}" cy="${TOP}" rx="420" ry="58" fill="none" stroke="url(#gold)" stroke-width="2.5"/>
-  <path d="M${CX - 420},${TOP} A420,58 0 0 0 ${CX + 420},${TOP}" fill="none" stroke="#ffe2a3" stroke-opacity=".35" stroke-width="1" transform="translate(0 3)"/>
+  ${reflect ? '' : '-->'}
+  <ellipse cx="${CX}" cy="${TOP}" rx="420" ry="${ry}" fill="none" stroke="url(#gold)" stroke-width="2.5"/>
+  <path d="M${CX - 420},${TOP} A420,${ry} 0 0 0 ${CX + 420},${TOP}" fill="none" stroke="#ffe2a3" stroke-opacity=".35" stroke-width="1" transform="translate(0 3)"/>
   <!-- ombre de contact -->
-  <ellipse cx="${CX + 30}" cy="${TOP + 20}" rx="330" ry="22" fill="#000" opacity=".75" filter="url(#blur)"/>
+  ${shadow}
 
-  ${bag}
+  ${subject}
 
   <g>${dust}</g>
   <rect width="${W}" height="${H}" fill="url(#vignette)"/>
   <rect width="${W}" height="${H}" filter="url(#vignetteGrain)"/>
-</svg>`;
+</svg>`; };
 
-fs.writeFileSync(__dirname + '/pub-lylium.svg', svg);
-(async () => {
+const render = async (svg, name) => {
+  fs.writeFileSync(__dirname + '/' + name + '.svg', svg);
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: W, height: H } });
   await page.setContent(`<html><body style="margin:0">${svg}</body></html>`);
   await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: __dirname + '/pub-lylium.png' });
+  await page.screenshot({ path: __dirname + '/' + name + '.png' });
   await browser.close();
-})();
+};
+module.exports = { sceneSvg, render, W, H, CX, TOP };
+
+if (require.main === module) {
+  const shadow = `<ellipse cx="${CX + 30}" cy="${TOP + 20}" rx="330" ry="22" fill="#000" opacity=".75" filter="url(#blur)"/>`;
+  render(sceneSvg(bag, shadow), 'pub-lylium');
+}

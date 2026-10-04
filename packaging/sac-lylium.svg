@@ -139,7 +139,7 @@
 
     <!-- logo unique : fleur de lys coupée en deux par « Lylium » en calligraphie -->
     <g transform="translate(740 710)">
-      <g filter="url(#foil)"><g mask="url(#cut)"><use href="#logo" x="-170" y="-154.39121756487026" width="340" height="308.7824351297405" fill="url(#gold)"/></g></g>
+<g filter="url(#foil)"><g mask="url(#cut)"><use href="#logo" x="-170" y="-154.39121756487026" width="340" height="308.7824351297405" fill="url(#gold)"/></g></g>
       <text x="0" y="62" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="132"
             fill="url(#gold)" filter="url(#foil)">Lylium</text>
     </g>
