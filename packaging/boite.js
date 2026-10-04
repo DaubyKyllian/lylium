@@ -1,5 +1,5 @@
-// Boîte rigide Lylium : bleu nuit, logo en dorure au centre du couvercle.
-const { logoMark, NAVY } = require('./build.js');
+// Boîte rigide Lylium : bleu nuit, fleur de lys seule en dorure au centre du couvercle.
+const { logoFleur, NAVY } = require('./build.js');
 const { sceneSvg, render, CX } = require('./pub.js');
 const TOP = 800;                                 // dessus du socle pour cette scène
 
@@ -64,7 +64,7 @@ const box = `<g>${defs}
   ${edge(P(BW, 0, 0), P(BW, yS, 0), '#8f8ae8', .15, 1.2)}
   ${edge(P(-OV, BH - LID, -OV), P(BW + OV, BH - LID, -OV), '#000', .5, 1.5)}
   <!-- logo en dorure sur le couvercle -->
-  <g transform="${logoT}"><g transform="scale(1.25)">${logoMark}</g></g>
+  <g transform="${logoT}"><g transform="scale(1.05)">${logoFleur}</g></g>
 </g>`;
 
 const foot = [P(0, 0, 0), P(BW, 0, 0), P(BW, 0, BD), P(0, 0, BD)];

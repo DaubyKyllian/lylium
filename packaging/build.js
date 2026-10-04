@@ -40,6 +40,8 @@ const G = 120, D = 30;                              // soufflet : profondeur, re
 const logoMark = `<g filter="url(#foil)"><g mask="url(#cut)"><use href="#logo" x="-${LOGO_W/2}" y="-${LOGO_H/2}" width="${LOGO_W}" height="${LOGO_H}" fill="url(#gold)"/></g></g>
       <text x="0" y="${CUT_Y + 22}" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="132"
             fill="url(#gold)" filter="url(#foil)">Lylium</text>`;
+// Logo seul (fleur de lys sans le nom), centré sur l'origine
+const logoFleur = `<g filter="url(#foil)"><use href="#logo" x="-${LOGO_W/2}" y="-${LOGO_H/2}" width="${LOGO_W}" height="${LOGO_H}" fill="url(#gold)"/></g>`;
 
 // Dessin du sac (sans décor), réutilisé par la maquette et le visuel pub
 const bagDefs = `${defsCommon}
@@ -168,7 +170,7 @@ ${logoMark}
   <circle cx="${cx}" cy="${F.y+24}" r="13" fill="url(#gold)"/>
   <circle cx="${cx}" cy="${F.y+24}" r="7.5" fill="#05041a"/>
   <circle cx="${cx}" cy="${F.y+24}" r="13" fill="none" stroke="${GOLD_DEEP}" stroke-width="1"/>`).join('')}`;
-module.exports = { logoMark, bagDefs, bagBody, F, G, D, NAVY, GOLD, GOLD_DEEP, motifs, tile };
+module.exports = { logoMark, logoFleur, bagDefs, bagBody, F, G, D, NAVY, GOLD, GOLD_DEEP, motifs, tile };
 
 const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
   <defs>${bagDefs}
