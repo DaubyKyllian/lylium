@@ -1,0 +1,10 @@
+<g>
+  <use href="#etoile" x="28" y="12" width="30" height="30"/>
+  <use href="#flamme" x="157" y="2" width="30" height="50"/>
+  <use href="#flamme" x="28" y="125" width="30" height="50"/>
+  <use href="#fleur" x="129" y="100" width="86" height="86"/>
+  <use href="#fleur" x="0" y="226" width="86" height="86"/>
+  <use href="#etoile" x="157" y="222" width="30" height="30"/>
+  <use href="#fleur" x="261" y="226" width="86" height="86"/>
+  <use href="#fleur" x="-261" y="226" width="86" height="86"/>
+</g>

@@ -1,0 +1,12 @@
+<symbol id="fleur" viewBox="-50 -50 100 100" overflow="visible">
+  <path d="M0,-44 Q3.5,-31 10,-25 Q3.5,-19 0,-5 Q-3.5,-19 -10,-25 Q-3.5,-31 0,-44Z"/>
+  <path d="M-1.4,-8 L1.4,-8 L0.9,44 L-0.9,44Z"/>
+  <path d="M1.5,44 C1,14 18,-11 46,-9 C31,-4 11,12 1.5,44Z"/>
+  <path d="M-1.5,44 C-1,14 -18,-11 -46,-9 C-31,-4 -11,12 -1.5,44Z"/>
+</symbol>
+<symbol id="etoile" viewBox="-15 -15 30 30" overflow="visible">
+  <path d="M0,-14 Q1.8,-2 9.5,0 Q1.8,2 0,14 Q-1.8,2 -9.5,0 Q-1.8,-2 0,-14Z"/>
+</symbol>
+<symbol id="flamme" viewBox="-15 -25 30 50" overflow="visible">
+  <path d="M3,-23 C11,-14 10,-3 3,5 C-1,10 -4,16 -3,23 C-9,15 -9,6 -2,-2 C3,-8 5,-15 3,-23Z"/>
+</symbol>
