@@ -30,13 +30,11 @@ fs.writeFileSync(__dirname + '/motif-lylium.svg', tileSvg);
 // Maquette du sac
 const CUT_Y = 48;                                    // hauteur de la coupe du logo (repère du logo)
 const F = { x: 470, y: 400, w: 540, h: 660 };        // face avant
-const G = 120, D = 30;                              // soufflet : profondeur, recul perspective                                       // profondeur du soufflet
-const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
-  <defs>${defsCommon}
+const G = 120, D = 30;                              // soufflet : profondeur, recul perspective
+
+// Dessin du sac (sans décor), réutilisé par la maquette et le visuel pub
+const bagDefs = `${defsCommon}
     <style>@font-face{font-family:'Great Vibes';src:url(data:font/woff2;base64,${scriptFont}) format('woff2')}</style>
-    <radialGradient id="bg" cx=".5" cy=".38" r=".8">
-      <stop offset="0" stop-color="#f6f1e8"/><stop offset="1" stop-color="#d9cfbf"/>
-    </radialGradient>
     <linearGradient id="lightFront" x1="0" y1="0" x2="1" y2=".3">
       <stop offset="0" stop-color="#fff" stop-opacity=".10"/>
       <stop offset=".55" stop-color="#fff" stop-opacity="0"/>
@@ -68,14 +66,8 @@ const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="120
       <text x="0" y="${CUT_Y + 22}" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="132"
             fill="#000" stroke="#000" stroke-width="18" stroke-linejoin="round">Lylium</text>
     </mask>
-    <clipPath id="frontClip"><rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}"/></clipPath>
-  </defs>
-
-  <rect width="1600" height="1200" fill="url(#bg)"/>
-  <!-- ombre au sol -->
-  <ellipse cx="${F.x + F.w/2 + 60}" cy="${F.y + F.h + 8}" rx="400" ry="34" fill="#000" opacity=".28" filter="url(#blur)"/>
-  <path d="M${F.x+F.w+G-10},${F.y+F.h-D} L${F.x+F.w+G+140},${F.y+F.h+10} L${F.x+F.w},${F.y+F.h+12}Z" fill="#000" opacity=".12" filter="url(#blur)"/>
-
+    <clipPath id="frontClip"><rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}"/></clipPath>`;
+const bagBody = `
   <!-- anse arrière (fixée sur le panneau arrière) -->
   <path d="M${F.x+175+G},${F.y-D+10} C${F.x+175+G},${F.y-D-250} ${F.x+F.w-175+G},${F.y-D-250} ${F.x+F.w-175+G},${F.y-D+10}"
         fill="none" stroke="#06051a" stroke-width="15" stroke-linecap="round"/>
@@ -123,7 +115,20 @@ const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="120
   ${[F.x+175, F.x+F.w-175].map(cx => `
   <circle cx="${cx}" cy="${F.y+24}" r="13" fill="url(#gold)"/>
   <circle cx="${cx}" cy="${F.y+24}" r="7.5" fill="#05041a"/>
-  <circle cx="${cx}" cy="${F.y+24}" r="13" fill="none" stroke="${GOLD_DEEP}" stroke-width="1"/>`).join('')}
+  <circle cx="${cx}" cy="${F.y+24}" r="13" fill="none" stroke="${GOLD_DEEP}" stroke-width="1"/>`).join('')}`;
+module.exports = { bagDefs, bagBody, F, G, D, NAVY, GOLD, GOLD_DEEP, motifs, tile };
+
+const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>${bagDefs}
+    <radialGradient id="bg" cx=".5" cy=".38" r=".8">
+      <stop offset="0" stop-color="#f6f1e8"/><stop offset="1" stop-color="#d9cfbf"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+  <!-- ombre au sol -->
+  <ellipse cx="${F.x + F.w/2 + 60}" cy="${F.y + F.h + 8}" rx="400" ry="34" fill="#000" opacity=".28" filter="url(#blur)"/>
+  <path d="M${F.x+F.w+G-10},${F.y+F.h-D} L${F.x+F.w+G+140},${F.y+F.h+10} L${F.x+F.w},${F.y+F.h+12}Z" fill="#000" opacity=".12" filter="url(#blur)"/>
+${bagBody}
 
   <!-- légende -->
   <g font-family="'Cormorant Garamond','Liberation Serif',serif" fill="${NAVY}">
@@ -137,7 +142,7 @@ const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="120
 </svg>`;
 fs.writeFileSync(__dirname + '/sac-lylium.svg', bagSvg);
 
-(async () => {
+if (require.main === module) (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
   const fonts = `<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@500&display=swap" rel="stylesheet">`;
