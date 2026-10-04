@@ -4,6 +4,7 @@ const { chromium } = require('playwright');
 
 const NAVY = '#0e0c32', GOLD = '#f7bb57', GOLD_DEEP = '#c98f35';
 const motifs = fs.readFileSync(__dirname + '/motifs.svgfrag', 'utf8');
+const scriptFont = fs.readFileSync(__dirname + '/fonts/great-vibes-latin-400-normal.woff2').toString('base64');
 const tile = fs.readFileSync(__dirname + '/tile.svgfrag', 'utf8');
 
 const defsCommon = `
@@ -27,10 +28,12 @@ const tileSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1044" height="10
 fs.writeFileSync(__dirname + '/motif-lylium.svg', tileSvg);
 
 // Maquette du sac
+const CUT_Y = 48;                                    // hauteur de la coupe du logo (repère du logo)
 const F = { x: 470, y: 400, w: 540, h: 660 };        // face avant
 const G = 120, D = 30;                              // soufflet : profondeur, recul perspective                                       // profondeur du soufflet
 const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
   <defs>${defsCommon}
+    <style>@font-face{font-family:'Great Vibes';src:url(data:font/woff2;base64,${scriptFont}) format('woff2')}</style>
     <radialGradient id="bg" cx=".5" cy=".38" r=".8">
       <stop offset="0" stop-color="#f6f1e8"/><stop offset="1" stop-color="#d9cfbf"/>
     </radialGradient>
@@ -59,6 +62,12 @@ const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="120
     <filter id="emboss" x="-5%" y="-5%" width="110%" height="110%">
       <feDropShadow dx="0" dy="1.5" stdDeviation="1" flood-color="#000" flood-opacity=".55"/>
     </filter>
+    <mask id="cut" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800">
+      <rect x="-400" y="-400" width="800" height="800" fill="#fff"/>
+      <rect x="-400" y="${CUT_Y - 40}" width="800" height="62" fill="#000"/>
+      <text x="0" y="${CUT_Y + 22}" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="132"
+            fill="#000" stroke="#000" stroke-width="18" stroke-linejoin="round">Lylium</text>
+    </mask>
     <clipPath id="frontClip"><rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}"/></clipPath>
   </defs>
 
@@ -80,40 +89,27 @@ const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="120
   </g>
   <!-- soufflet latéral -->
   <g>
-    <path d="M${F.x+F.w},${F.y} L${F.x+F.w+G},${F.y-D} L${F.x+F.w+G},${F.y+F.h-D} L${F.x+F.w},${F.y+F.h}Z" fill="url(#monogram)"/>
+    <path d="M${F.x+F.w},${F.y} L${F.x+F.w+G},${F.y-D} L${F.x+F.w+G},${F.y+F.h-D} L${F.x+F.w},${F.y+F.h}Z" fill="${NAVY}"/>
     <path d="M${F.x+F.w},${F.y} L${F.x+F.w+G},${F.y-D} L${F.x+F.w+G},${F.y+F.h-D} L${F.x+F.w},${F.y+F.h}Z" fill="#000" opacity=".42"/>
     <path d="M${F.x+F.w},${F.y} L${F.x+F.w+G/2},${F.y+40} L${F.x+F.w+G},${F.y-D}" fill="#000" opacity=".35"/>
     <path d="M${F.x+F.w+G/2},${F.y+40} L${F.x+F.w+G/2},${F.y+F.h-80}" stroke="#000" stroke-opacity=".35" stroke-width="2"/>
     <path d="M${F.x+F.w},${F.y+F.h} L${F.x+F.w+G/2},${F.y+F.h-80} L${F.x+F.w+G},${F.y+F.h-D}" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="2"/>
-    <path d="M${F.x+F.w},${F.y} L${F.x+F.w+G},${F.y-D}" stroke="${GOLD}" stroke-opacity=".5" stroke-width="1.5"/>
+    
   </g>
 
   <!-- face avant -->
   <g clip-path="url(#frontClip)">
-    <rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}" fill="url(#monogram)"/>
-    <!-- revers du haut -->
-    <rect x="${F.x}" y="${F.y}" width="${F.w}" height="46" fill="${NAVY}"/>
-    <line x1="${F.x}" x2="${F.x+F.w}" y1="${F.y+46}" y2="${F.y+46}" stroke="url(#gold)" stroke-width="3"/>
-    <line x1="${F.x}" x2="${F.x+F.w}" y1="${F.y+F.h-34}" y2="${F.y+F.h-34}" stroke="url(#gold)" stroke-width="2"/>
+    <rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}" fill="${NAVY}"/>
 
-    <!-- cartouche -->
-    <g transform="translate(${F.x + F.w/2} ${F.y + F.h/2 + 30})">
-      <rect x="-165" y="-92" width="330" height="184" rx="6" fill="${NAVY}"/>
-      <rect x="-165" y="-92" width="330" height="184" rx="6" fill="none" stroke="url(#gold)" stroke-width="3"/>
-      <rect x="-154" y="-81" width="308" height="162" rx="3" fill="none" stroke="url(#gold)" stroke-width="1"/>
-      <g filter="url(#emboss)" fill="url(#gold)">
-        <use href="#fleur" x="-26" y="-74" width="52" height="52"/>
-        <text x="0" y="34" text-anchor="middle" font-family="'Cormorant Garamond', 'Liberation Serif', serif"
-              font-size="52" font-weight="600" letter-spacing="14">LYLIUM</text>
-        <text x="7" y="64" text-anchor="middle" font-family="'Inter', 'DejaVu Sans', sans-serif"
-              font-size="11" letter-spacing="6">MAISON FRANÇAISE</text>
-      </g>
+    <!-- logo unique : fleur de lys coupée en deux par « Lylium » en calligraphie -->
+    <g transform="translate(${F.x + F.w/2} ${F.y + F.h/2 - 20})">
+      <g filter="url(#emboss)"><g mask="url(#cut)"><use href="#fleur" x="-160" y="-160" width="320" height="320" fill="url(#gold)"/></g></g>
+      <text x="0" y="${CUT_Y + 22}" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="132"
+            fill="url(#gold)" filter="url(#emboss)">Lylium</text>
     </g>
 
     <rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}" fill="url(#lightFront)"/>
     <rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}" fill="url(#lightV)"/>
-    <!-- léger pli vertical du papier -->
-    <rect x="${F.x+F.w*0.62}" y="${F.y}" width="60" height="${F.h}" fill="#fff" opacity=".035"/>
   </g>
   <rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}" fill="none" stroke="#000" stroke-opacity=".4"/>
 
@@ -131,8 +127,8 @@ const bagSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="120
 
   <!-- légende -->
   <g font-family="'Cormorant Garamond','Liberation Serif',serif" fill="${NAVY}">
-    <text x="90" y="120" font-size="44" font-weight="600" letter-spacing="10">LYLIUM</text>
-    <text x="92" y="152" font-family="'Inter','DejaVu Sans',sans-serif" font-size="13" letter-spacing="4" opacity=".7">SAC SHOPPING PREMIUM — MONOGRAMME FLEUR DE LYS</text>
+    <text x="88" y="122" font-family="'Great Vibes', cursive" font-size="64">Lylium</text>
+    <text x="92" y="178" font-family="'Inter','DejaVu Sans',sans-serif" font-size="13" letter-spacing="4" opacity=".7">SAC SHOPPING PREMIUM — BLEU NUIT, LOGO FLEUR DE LYS</text>
     <g font-family="'Inter','DejaVu Sans',sans-serif" font-size="13" letter-spacing="1.5">
       <rect x="90" y="1050" width="34" height="34" fill="${NAVY}"/><text x="134" y="1072">Bleu nuit #0E0C32</text>
       <rect x="300" y="1050" width="34" height="34" fill="${GOLD}"/><text x="344" y="1072">Or #F7BB57 (dorure à chaud)</text>
