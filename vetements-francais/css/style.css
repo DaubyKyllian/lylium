@@ -62,8 +62,8 @@
        Réservés aux bandeaux éditoriaux toujours sombres (hero, bandeau
        citation, bannières catégorie...) : --ink/--cream s'inversent avec
        le thème et rendraient ces bandeaux illisibles si on les y utilisait. */
-    --stable-dark-1: #2a2016;
-    --stable-dark-2: #1a1512;
+    --stable-dark-1: #1a1739;
+    --stable-dark-2: #0e0c32;
     --stable-pale: #f6f0e4;
 
     color-scheme: light;
@@ -739,7 +739,7 @@ body.page-enfant .page-banner-inner .intro { margin-left: auto; margin-right: au
 .split-page-visual {
     position: relative; padding-top: var(--header-h); display: flex; align-items: center; justify-content: center;
     background-image:
-        radial-gradient(120% 140% at 20% 10%, rgba(42, 32, 22, .7) 0%, rgba(26, 21, 18, .7) 60%),
+        radial-gradient(120% 140% at 20% 10%, rgba(26, 23, 57, .7) 0%, rgba(14, 12, 50, .7) 60%),
         url('/images/ateliers.jpg');
     background-position: center, center;
     background-size: 100% 100%, cover;
