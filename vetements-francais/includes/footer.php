@@ -90,7 +90,7 @@
     </div>
 </footer>
 
-<script src="/js/app.js" defer></script>
-<script src="/js/chatbot.js" defer></script>
+<script src="/js/app.js?v=<?= filemtime(__DIR__ . '/../js/app.js') ?>" defer></script>
+<script src="/js/chatbot.js?v=<?= filemtime(__DIR__ . '/../js/chatbot.js') ?>" defer></script>
 </body>
 </html>

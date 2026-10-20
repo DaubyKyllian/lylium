@@ -1,5 +1,9 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
+    // Sans ça PHP envoie "no-store, no-cache" sur chaque page : le navigateur ne
+    // peut ni précharger ni restaurer instantanément (bouton précédent).
+    session_cache_limiter('');
+    header('Cache-Control: private, max-age=0');
     session_start();
 }
 

@@ -1,6 +1,7 @@
 <?php
 $pageTitle = "Accueil";
 $bodyClass = "page-home";
+$preloadImage = "/images/hero-provence.webp";
 include 'includes/header.php';
 include 'includes/navbar.php';
 include 'includes/produits-data.php';

@@ -6,13 +6,17 @@ $dbPath = __DIR__ . '/../database/lylium.sqlite';
 try {
     $pdo = new PDO('sqlite:' . $dbPath);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->exec('PRAGMA foreign_keys = ON;');
+    $pdo->exec('PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 3000; PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL;');
 
-    // Toujours rejoue : chaque instruction est "CREATE TABLE IF NOT EXISTS",
-    // donc sans risque sur une base existante (permet d'ajouter de nouvelles
-    // tables au fil du temps sans étape de migration manuelle).
-    $schema = file_get_contents(__DIR__ . '/../database/schema.sql');
-    $pdo->exec($schema);
+    // Schéma + données de départ : rejoués seulement quand schema.sql ou ce
+    // fichier changent (empreinte stockée dans PRAGMA user_version), au lieu
+    // d'à chaque requête. Chaque instruction du schéma est "CREATE TABLE IF
+    // NOT EXISTS", donc sans risque sur une base existante.
+    $schemaFile = __DIR__ . '/../database/schema.sql';
+    $version = crc32(file_get_contents($schemaFile) . filemtime(__FILE__)) & 0x7fffffff;
+
+    if ((int)$pdo->query('PRAGMA user_version')->fetchColumn() !== $version) {
+    $pdo->exec(file_get_contents($schemaFile));
 
     // Avis de démonstration : injectés une seule fois (table vide au tout
     // premier lancement), pour que les fiches produit affichent de vrais
@@ -47,6 +51,9 @@ try {
     if ((int)$pdo->query('SELECT COUNT(*) FROM certificats_authenticite')->fetchColumn() === 0) {
         $stmt = $pdo->prepare('INSERT INTO certificats_authenticite (produit_id, numero_serie, edition_totale, code) VALUES (?, ?, ?, ?)');
         $stmt->execute([5, 1, 3000, 'e4e8ed7181062bf8c9938402301abbe9']);
+    }
+
+    $pdo->exec('PRAGMA user_version = ' . $version);
     }
 } catch (PDOException $e) {
     die('Erreur base de données : ' . $e->getMessage());

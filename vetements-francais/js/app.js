@@ -35,8 +35,40 @@ var lyliumFinePointer = window.matchMedia && window.matchMedia('(hover: hover) a
 
         e.preventDefault();
         document.body.classList.add('page-leaving');
-        setTimeout(function () { window.location.href = link.href; }, 200);
+        setTimeout(function () { window.location.href = link.href; }, 120);
     });
+})();
+
+// Préchargement d'une page dès que le pointeur survole un lien interne (ou
+// au toucher) : le clic suivant charge depuis le cache, la navigation paraît
+// instantanée. Un seul préchargement par URL.
+(function () {
+    var conn = navigator.connection;
+    if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return;
+
+    var done = {};
+    var timer = null;
+
+    function prefetch(e) {
+        var link = e.target.closest && e.target.closest('a[href]');
+        if (!link || (link.target && link.target !== '_self') || link.hasAttribute('download')) return;
+        var url;
+        try { url = new URL(link.href, window.location.href); } catch (err) { return; }
+        if (url.origin !== window.location.origin || url.hash && url.pathname === window.location.pathname) return;
+        if (/\/(deconnexion|favoris-toggle|newsletter)\.php$/.test(url.pathname)) return;
+        if (done[url.href]) return;
+        done[url.href] = true;
+        var el = document.createElement('link');
+        el.rel = 'prefetch';
+        el.href = url.href;
+        document.head.appendChild(el);
+    }
+
+    document.addEventListener('mouseover', function (e) {
+        clearTimeout(timer);
+        timer = setTimeout(function () { prefetch(e); }, 65);
+    }, { passive: true });
+    document.addEventListener('touchstart', prefetch, { passive: true });
 })();
 
 document.addEventListener('DOMContentLoaded', function () {
