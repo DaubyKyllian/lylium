@@ -33,7 +33,7 @@ include 'includes/produits-data.php';
         <p class="hero-subtitle">Un emblème · Une histoire · <em>Réécrite</em></p>
 
         <div class="hero-bottom-row">
-            <a href="/homme.php" class="btn hero-btn">Premier chapitre</a>
+            <a href="categorie/homme.php" class="btn hero-btn">Premier chapitre</a>
         </div>
     </div>
 
